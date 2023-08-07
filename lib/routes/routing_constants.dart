@@ -4,4 +4,7 @@ abstract class Routes {
   static const homeRoute = '/home';
   static const notFoundRoute = '/notFound';
   static const splashRoute = '/splash';
+  static const cartRoute = '/cart';
+  static const categoryRoute = '/category';
+  static const mineRoute = '/mine';
 }

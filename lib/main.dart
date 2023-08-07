@@ -11,6 +11,8 @@ import 'package:mortalheart_mall/routes/routes.dart';
 import 'package:mortalheart_mall/routes/routing_constants.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'navigation/nav_page.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -45,11 +47,12 @@ class MyApp extends StatelessWidget {
         title: '凡人之心',
         debugShowCheckedModeBanner: false,
         //  默认加载
-        initialRoute:Routes.splashRoute,
+        // initialRoute:Routes.splashRoute,
         // 404
         unknownRoute: AppPages.unknownRoute,
         // 加载路由
         getPages: AppPages.pages,
+        home:const NavPage(),
         builder: (context, widget) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
