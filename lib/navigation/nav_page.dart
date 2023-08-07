@@ -28,7 +28,7 @@ class _NavPageState extends State<NavPage> {
     });
   }
 
-  List<Widget> pages = [ const HomePage(),  CategoryPage(),  CartPage(),  MinePage()];
+  List<Widget> pages = [ const HomePage(),  const CategoryPage(),  const CartPage(),  const MinePage()];
 
   @override
   Widget build(BuildContext context) {
