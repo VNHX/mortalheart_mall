@@ -4,31 +4,27 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mortalheart_mall/routes/routing_constants.dart';
 
-class SplashController extends GetxController
-    with GetSingleTickerProviderStateMixin {
+class SplashController extends GetxController{
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-  }
   @override
   void onInit() {
     // TODO: implement onInit
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.top]);
+   init();
   }
-
+  init() async{
+    await Future.delayed(const Duration(milliseconds:  2000));
+    navigationPage();
+    print('跳转首页');
+  }
   @override
   Future<void> onReady() async {
     // TODO: implement onReady
-    navigationPage();
+
   }
 
   @override
   void onClose() {
     // TODO: implement clone
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.top]);
   }
 
   void navigationPage() {

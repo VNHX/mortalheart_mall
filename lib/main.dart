@@ -44,8 +44,6 @@ class MyApp extends StatelessWidget {
       child:  GetMaterialApp(
         title: '凡人之心',
         debugShowCheckedModeBanner: false,
-        // 日志
-        logWriterCallback: logWriterCallback,
         //  默认加载
         initialRoute:Routes.splashRoute,
         // 404
@@ -66,15 +64,5 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-void logWriterCallback(String value, {bool isError = false}) {
-  if (Get.isLogEnable) {
-    if (isError) {
-
-    } else {
-
-    }
   }
 }
