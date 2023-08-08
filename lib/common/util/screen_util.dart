@@ -29,7 +29,7 @@ double getBottomNavigationBarHeight(BuildContext context) {
   return kBottomNavigationBarHeight + getBottomSpace(context);
 }
 
-double calc2Top(double scrollY) {
+double calc2Top(scrollY) {
   double result = 45;
   if (scrollY > 0 && scrollY <= 45) {
     result -= scrollY * 0.92;

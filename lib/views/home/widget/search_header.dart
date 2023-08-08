@@ -10,39 +10,59 @@ import 'package:mortalheart_mall/common/util/screen_util.dart';
 import 'package:mortalheart_mall/views/home/home_contoller.dart';
 import 'package:mortalheart_mall/widgets/persistentHeader/sliver_header_builder.dart';
 
-Widget searchHeader(BuildContext context) {
+Widget searchHeader(BuildContext context, HomeController controller) {
     // TODO: implement build
-   Get.put(HomeController());
    return SliverPersistentHeader(
      pinned: true,
      delegate: SliverHeaderDelegate(
-       maxHeight: 88 + getStatusHeight(context),
-       minHeight: 44 + getStatusHeight(context),
+       maxHeight: 85 + getStatusHeight(context),
+       minHeight: 85 + getStatusHeight(context),
        child: Container(
-         color: CommonStyle.themeColor,
+         // color: CommonStyle.themeColor,
+         decoration:  BoxDecoration(
+           gradient: LinearGradient(
+             colors: [
+               CommonStyle.gradientleftColor,
+               CommonStyle.gradientRightColor,
+               CommonStyle.gradientbottomColor,
+             ],
+           ),
+         ),
          padding: EdgeInsets.only(top: getStatusHeight(context)),
          child:  Stack(
            alignment: Alignment.center,
            fit: StackFit.expand,
              children: <Widget>[
-               const Positioned(
-                 top: 0,
+                Positioned(
+                 top: 10,
                  left: 18,
-                 child: Text('LOGO'),
+                 child: Container(
+                   child: const Text('logo'),
+                 ),
                ),
-               const Positioned(
-                 top: 0,
+                Positioned(
+                 top: 10,
                  right: 18,
-                 child: Text('扫码'),
+                 child:  Row(
+                     children: <Widget>[
+                       Container(
+                         margin: const EdgeInsets.only(right: 8),
+                         child: const Text('消费'),
+                       ),
+                       Container(
+                         child: const Text('消息'),
+                       ),
+                     ]
+                 ),
                ),
                Positioned(
-                   top:calc2Top(HomeController.pageScrollY.value),
+                   top: 40,
                    child: Container(
                      height: 35,
-                     width: MediaQuery.of(context).size.width -
-                         calcWidth(HomeController.pageScrollY.value),
+                     padding: const EdgeInsets.only(left: 4,right: 4),
+                     width: MediaQuery.of(context).size.width - 28,
                      decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(12),
+                       borderRadius: BorderRadius.circular(15),
                        color: Colors.white,
                      ),
                      child: Row(
@@ -63,7 +83,7 @@ Widget searchHeader(BuildContext context) {
                              alignment: Alignment.centerLeft,
                              child: InkWell(
                                onTap: () => {},
-                               child: buildMarqueeWidget(),
+                               child: buildMarqueeWidget(controller),
                              ),
                            ),
                          ),
@@ -100,8 +120,8 @@ Widget searchHeader(BuildContext context) {
 
    );
   }
-MarqueeWidget buildMarqueeWidget() {
-  List itemStr =HomeController.searchList ?? [];
+MarqueeWidget buildMarqueeWidget(HomeController controller) {
+  List itemStr =controller.searchList ?? [];
 
   ///上下轮播 安全提示
   return MarqueeWidget(
@@ -111,7 +131,7 @@ MarqueeWidget buildMarqueeWidget() {
       return Text(
         itemStr[index],
         textAlign: TextAlign.left,
-        style: TextStyle(color: CommonStyle.selectedTabColor, height: 2.0),
+        style: TextStyle(color: CommonStyle.searchColor, height: 2.0),
       );
     },
     //循环的提示消息数量

@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:mortalheart_mall/common/style/common_style.dart';
 import 'package:mortalheart_mall/common/util/screen_util.dart';
 import 'package:mortalheart_mall/routes/routes.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
