@@ -18,6 +18,9 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
+  json_annotation: ^4.8.1
+  dio: ^5.3.2
+  connectivity_plus: ^4.0.2
 
 dev_dependencies:
   flutter_test:
@@ -31,12 +34,20 @@ flutter:
   assets:
      - images/ic_home.png
      - images/ic_home_active.png
+     - images/ic_stoll.png
+     - images/ic_stoll_active.png
      - images/ic_category.png
      - images/ic_category_active.png
      - images/ic_cart.png
      - images/ic_cart_active.png
      - images/ic_mine.png
      - images/ic_mine_active.png
+     - images/default.png
+     - images/classification.png
+     - images/message.png
+     - images/search.png
+     - images/scan.png
+     - images/camera.png
   # example:
   # fonts:
   #   - family: Schyler

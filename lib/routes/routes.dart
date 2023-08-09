@@ -5,6 +5,7 @@ import 'package:mortalheart_mall/views/home/home_page.dart';
 import 'package:mortalheart_mall/views/mine/mine_page.dart';
 import 'package:mortalheart_mall/views/not_found/not_found_page.dart';
 import 'package:mortalheart_mall/views/splash/splash_page.dart';
+import 'package:mortalheart_mall/views/stroll/stroll_page.dart';
 
 import 'routing_constants.dart';
 
@@ -35,14 +36,20 @@ abstract class AppPages {
     GetPage(
       name:  Routes.categoryRoute,
       page: ()=> const CategoryPage(),
-      title:'启动页',
+      title:'分类',
       transition: Transition.fade,
     ),
     GetPage(
       name:  Routes.mineRoute,
       page: ()=> const MinePage(),
-      title:'启动页',
+      title:'我的',
       transition: Transition.fade,
+    ),
+    GetPage(
+        name: Routes.strollRoute,
+        page: ()=> const StrollPage(),
+        title:'逛',
+        transition: Transition.fade,
     )
   ];
 

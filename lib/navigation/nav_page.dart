@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mortalheart_mall/common/style/common_style.dart';
 import 'package:mortalheart_mall/views/cart/cart_page.dart';
-import 'package:mortalheart_mall/views/category/category_page.dart';
 import 'package:mortalheart_mall/views/home/home_page.dart';
 import 'package:mortalheart_mall/views/mine/mine_page.dart';
+import 'package:mortalheart_mall/views/stroll/stroll_page.dart';
 import 'package:mortalheart_mall/widgets/image/asset_image.dart';
 
 class NavPage extends StatefulWidget {
@@ -28,7 +28,7 @@ class _NavPageState extends State<NavPage> {
     });
   }
 
-  List<Widget> pages = [ const HomePage(),  const CategoryPage(),  const CartPage(),  const MinePage()];
+  List<Widget> pages = [ const HomePage(),const StrollPage(),  const CartPage(),  const MinePage()];
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +63,9 @@ class _NavPageState extends State<NavPage> {
                     label: '首页'
                 ),
                 BottomNavigationBarItem(
-                    icon: assetImage('images/ic_category.png', 30, 30),
-                    activeIcon: assetImage('images/ic_category_active.png', 30, 30),
-                    label: '分类'
+                    icon: assetImage('images/ic_stoll.png', 30, 30),
+                    activeIcon: assetImage('images/ic_stoll_active.png', 30, 30),
+                    label:'逛'
                 ),
                 BottomNavigationBarItem(
                     icon: assetImage('images/ic_cart.png', 30, 30),

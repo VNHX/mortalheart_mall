@@ -36,7 +36,8 @@ Widget galleryList(BuildContext context, HomeController controller) {
               indicatorRadius: 4,
               indicatorBorderWidth: 0,
               currentIndicatorColor: CommonStyle.themeColor,
-              indicatorBackgroundColor: Colors.grey),
+              indicatorBackgroundColor: Colors.grey
+          ),
         ),
         items: controller.bannerList.value.map((item) {
           return GestureDetector(
@@ -44,7 +45,7 @@ Widget galleryList(BuildContext context, HomeController controller) {
 
               },
               child: Container(
-                  margin: const EdgeInsets.fromLTRB(12, 10, 12, 2),
+                  margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(6)),
                     child: CachedNetworkImage(
@@ -53,7 +54,9 @@ Widget galleryList(BuildContext context, HomeController controller) {
                       placeholder: (context, url) => assetImage("images/default.png", carouselWidth, 168),
                       errorWidget: (context, url, error) => assetImage("images/default.png", carouselWidth, 168),
                     ),
-                  )));
+                  )
+              )
+          );
         }).toList(),
       )
   );

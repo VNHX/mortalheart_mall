@@ -8,7 +8,7 @@ import 'package:mortalheart_mall/common/util/screen_util.dart';
 import 'package:mortalheart_mall/views/home/home_contoller.dart';
 import 'package:mortalheart_mall/widgets/image/asset_image.dart';
 
-Widget tabList(BuildContext context, HomeController controller, {required ValueCallback<String> onTabChange}) {
+Widget tabList(BuildContext context, HomeController controller) {
   return Container(
           height: 30,
           alignment: Alignment.topCenter,
@@ -24,42 +24,42 @@ Widget tabList(BuildContext context, HomeController controller, {required ValueC
           child:Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              width: getScreenWidth(context) - 70.0,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 20,
-                itemExtent: 53.0,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                      onTap: () => controller.onTabChange(),
-                      child: Flex(
-                        direction: Axis.vertical,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                width: 53,
-                                alignment: Alignment.topCenter,
-                                margin: const EdgeInsets.only(left: 20),
-                                // color: Colors.tealAccent,
-                                child: Text(
-                                  '测试',
-                                  style: TextStyle(
-                                      color:  controller.isSelect.value ? Colors.white : Colors.white,
-                                    fontWeight: controller.isSelect.value ? FontWeight.w600:FontWeight.w100,
-                                    fontSize:  controller.isSelect.value ? 15:13,
-                                  ),
-                                ),
-                              )
-                          ),
-                        ],
-                      )
-                  );
-                },
-              ),
-            ),
+               SizedBox(
+                 width: getScreenWidth(context) - 70.0,
+                 child: ListView.builder(
+                   scrollDirection: Axis.horizontal,
+                   itemCount: controller.tabs.length,
+                   itemExtent: 55.0,
+                   itemBuilder: (BuildContext context, int index) {
+                     return  GestureDetector(
+                         onTap: () => controller.onTabChange(controller.tabs[index].code,controller.tabs),
+                         child: Flex(
+                           direction: Axis.vertical,
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           children: [
+                             Expanded(
+                                 flex: 1,
+                                 child: Container(
+                                   width: 50,
+                                   alignment: Alignment.topCenter,
+                                   margin: const EdgeInsets.only(left: 20),
+                                   // color: Colors.tealAccent,
+                                   child:Obx(() => Text(
+                                     controller.tabs[index].name ?? "",
+                                     style: TextStyle(
+                                       color: controller.currentTab == controller.tabs[index].code ? Colors.white : Colors.white,
+                                       fontWeight: controller.currentTab == controller.tabs[index].code ? FontWeight.w600:FontWeight.w100,
+                                       fontSize:  controller.currentTab == controller.tabs[index].code ? 13:13,
+                                     ),
+                                   )),
+                                 )
+                             ),
+                           ],
+                         )
+                     );
+                   },
+                 ),
+           ),
             // const SizedBox(
             //   width: 1,
             //   height: 20,
@@ -73,7 +73,7 @@ Widget tabList(BuildContext context, HomeController controller, {required ValueC
                 SizedBox(
                   width: 20,
                   height: 20,
-                  child: assetImage('images/ic_home.png', 20, 20),
+                  child: assetImage('images/classification.png', 20, 20),
                 ),
                   Container(
                     margin: const EdgeInsets.only(left: 5),

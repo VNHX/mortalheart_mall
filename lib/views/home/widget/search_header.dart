@@ -1,13 +1,14 @@
 
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
 import 'package:mortalheart_mall/common/style/common_style.dart';
 import 'package:mortalheart_mall/common/util/marquee_widget.dart';
 import 'package:mortalheart_mall/common/util/screen_util.dart';
 import 'package:mortalheart_mall/views/home/home_contoller.dart';
+import 'package:mortalheart_mall/widgets/image/asset_image.dart';
 import 'package:mortalheart_mall/widgets/persistentHeader/sliver_header_builder.dart';
 
 Widget searchHeader(BuildContext context, HomeController controller) {
@@ -34,23 +35,30 @@ Widget searchHeader(BuildContext context, HomeController controller) {
            fit: StackFit.expand,
              children: <Widget>[
                 Positioned(
-                 top: 10,
+                 top: 6,
                  left: 18,
-                 child: Container(
-                   child: const Text('logo'),
+                 child: CachedNetworkImage(
+                   width: 25,
+                   height: 25,
+                   fit: BoxFit.cover,
+                   imageUrl: 'https://m15.360buyimg.com/mobilecms/jfs/t1/104637/39/25735/190791/622f3682E168960d2/2dbfbaf4147134c1.gif',
+                   placeholder: (context, url) => assetImage("images/default.png", 25, 25),
+                   errorWidget: (context, url, error) => assetImage("images/default.png", 25, 25),
                  ),
                ),
                 Positioned(
-                 top: 10,
+                 top: 6,
                  right: 18,
                  child:  Row(
                      children: <Widget>[
-                       Container(
-                         margin: const EdgeInsets.only(right: 8),
-                         child: const Text('消费'),
-                       ),
-                       Container(
-                         child: const Text('消息'),
+                       // Container(
+                       //   margin: const EdgeInsets.only(right: 8),
+                       //   child: const Text('消费'),
+                       // ),
+                       SizedBox(
+                         width: 25,
+                         height: 25,
+                         child: assetImage('images/message.png', 25, 25),
                        ),
                      ]
                  ),
@@ -68,12 +76,11 @@ Widget searchHeader(BuildContext context, HomeController controller) {
                      child: Row(
                        crossAxisAlignment: CrossAxisAlignment.center,
                        children: <Widget>[
-                         const SizedBox(
+                          SizedBox(
                              width: 40,
                              height: 35,
                              child: UnconstrainedBox(
-                               child:
-                               Text('搜索'),
+                               child: assetImage('images/search.png', 20, 20)
                              )
                          ),
                          Expanded(
@@ -87,14 +94,14 @@ Widget searchHeader(BuildContext context, HomeController controller) {
                              ),
                            ),
                          ),
-                         const SizedBox(
+                          SizedBox(
                              width: 34,
                              height: 34,
                              child: UnconstrainedBox(
-                               child:Text('12'),
+                               child:assetImage('images/camera.png', 20, 20),
                              )
                          ),
-                         const SizedBox(
+                          const SizedBox(
                            width: 1,
                            height: 12,
                            child: DecoratedBox(
@@ -102,11 +109,11 @@ Widget searchHeader(BuildContext context, HomeController controller) {
                              BoxDecoration(color: Colors.black12),
                            ),
                          ),
-                         const SizedBox(
+                          SizedBox(
                              width: 34,
                              height: 34,
                              child: UnconstrainedBox(
-                               child: Text('扫码'),
+                               child: assetImage('images/scan.png', 20, 20),
                              )
                          ),
                        ],

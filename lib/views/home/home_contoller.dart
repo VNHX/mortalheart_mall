@@ -3,6 +3,8 @@
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mortalheart_mall/models/home/home_page_info.dart';
+import 'package:mortalheart_mall/views/home/service.dart';
 
 class HomeController extends GetxController {
   /// 刷新
@@ -17,32 +19,50 @@ class HomeController extends GetxController {
   final List searchList =['跑步鞋','鸡胸肉','苹果13 手机壳'].obs;
 
    final isTabClick = RxBool(false);
+   /// homebj
+  final homebj = RxString('');
   /// tabs
    final tabs = RxList([]);
+   /// 当前选中Tabs
+  final currentTab = '1'.obs;
   /// 判断 tabs 是否选中
-   final isSelect = RxBool(false);
+  final isSelect = false.obs;
   // 轮播图
    final bannerList = RxList([]);
   // 菜单
    final menuList = RxList([]);
-
-   final menuSliderIndex = RxInt(0);
-
+   /// 菜单 index
+   final menuSliderIndex = 0.obs;
+   /// 广告条
+  final adUrl = RxString('');
+  /// 首页数据
+  late HomePageInfo  homePageInfo;
 
   @override
   void onInit() {
     // TODO: implement onInit
+    intPage();
   }
   @override
   void dispose() {
     super.dispose();
     freshController.dispose();
   }
-
+  intPage() async {
+    Future initData = Future.wait([HomeApi.queryHomeInfo()]);
+    await initData.then((res) => {
+      homePageInfo = res[0],
+      tabs.value = homePageInfo.tabList ?? [],
+      bannerList.value = homePageInfo.bannerList ?? [],
+      adUrl.value = homePageInfo.adUrl ?? '',
+      menuList.value = homePageInfo.nineMenuList ?? [],
+    });
+  }
 
 
   Future<void> easyRefreshSuccess(EasyRefreshController freshController) async {
     freshController.finishRefresh(IndicatorResult.success);
+    intPage();
   }
 
 
@@ -54,24 +74,26 @@ class HomeController extends GetxController {
   Future<void> onScroll(ScrollNotification notification) async {
     double distance = notification.metrics.pixels;
     if (notification.depth == 0) {
-      pageScrollY =distance.obs as double;
+      // pageScrollY =distance.obs as double;
     }
   }
-  /// 首页tabs分类点击查询
-  Future<void> handleTabChange(String code, tabs) async {
+  /// 首页tabs分类
+  Future<void> onTabChange(code, List tabs) async {
     isTabClick.value = true;
+    currentTab.value = code;
     int tabIndex = tabs.indexWhere((element) => element.code == code);
     pageController.animateToPage(
         tabIndex,
         duration: const Duration(milliseconds: 200),
         curve: Curves.linear
     ).then((value) => isTabClick.value = false);
+
   }
-  /// 首页tabs分类
-  Future<void> onTabChange() async {}
  /// 菜单 滑动
   Future<void> setMenuSliderIndex(int index) async {
+    print('这是Menu$index');
     menuSliderIndex.value = index;
+    print('这是滑动的值：${ menuSliderIndex.value}');
   }
 
 

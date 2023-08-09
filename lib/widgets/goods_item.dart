@@ -10,12 +10,15 @@ Widget goodsItem(BuildContext context,  item, double width) {
       child: Container(
         padding: const EdgeInsets.only(bottom: 10),
         margin: const EdgeInsets.only(left: 5, right: 5),
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            offset: const Offset(0, 0), // 偏移量
-            blurRadius: 10,
-          )
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade300,
+                offset: const Offset(0, 0), // 偏移量
+                blurRadius: 10,
+              )
         ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +37,7 @@ Widget goodsItem(BuildContext context,  item, double width) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: const EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 10,left: 10),
                   padding: const EdgeInsets.only(left: 5, right: 6),
                   decoration: BoxDecoration(
                     color: ColorUtil.hex2Color('#ED4637'),
@@ -44,7 +47,7 @@ Widget goodsItem(BuildContext context,  item, double width) {
                   child: Text(item.tag.toString(), style: const TextStyle(color: Colors.white, fontSize: 14)),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 2),
+                  margin: const EdgeInsets.only(top: 2,left: 10),
                   padding: const EdgeInsets.only(left: 0, right: 6),
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -52,7 +55,7 @@ Widget goodsItem(BuildContext context,  item, double width) {
                   child: Text(item.des1.toString(), style: TextStyle(color: ColorUtil.hex2Color('#ED4637'), fontSize: 16)),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 2),
+                  margin: const EdgeInsets.only(top: 2,left: 10),
                   padding: const EdgeInsets.only(left: 0, right: 6),
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -60,7 +63,7 @@ Widget goodsItem(BuildContext context,  item, double width) {
                   child: Text(item.des2.toString(), style: TextStyle(color: ColorUtil.hex2Color('#737473'), fontSize: 14)),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 2),
+                  margin: const EdgeInsets.only(top: 2,left: 10),
                   padding: const EdgeInsets.only(left: 2, right: 2),
                   decoration: BoxDecoration(
                     color: ColorUtil.hex2Color('#FDF4F0'),
@@ -72,12 +75,21 @@ Widget goodsItem(BuildContext context,  item, double width) {
             )
                 : Column(
               children: [
-                Text(item.description.toString(),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(color: ColorUtil.hex2Color('#737473'), fontSize: 14)),
+                Container(
+                  margin: const EdgeInsets.only(top: 6,left: 6),
+                  child: Text(
+                      item.description.toString(),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: ColorUtil.hex2Color('#737473'),
+                          fontSize: 14
+                      )
+                  ),
+                ),
                 Container(
                     margin: const EdgeInsets.only(top: 6),
+                    padding: const EdgeInsets.only(left: 5, right: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -100,5 +112,6 @@ Widget goodsItem(BuildContext context,  item, double width) {
             )
           ],
         ),
-      ));
+      )
+  );
 }

@@ -7,4 +7,5 @@ abstract class Routes {
   static const cartRoute = '/cart';
   static const categoryRoute = '/category';
   static const mineRoute = '/mine';
+  static const strollRoute = '/stroll';
 }
