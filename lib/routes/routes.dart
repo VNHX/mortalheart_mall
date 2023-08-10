@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mortalheart_mall/views/cart/cart_page.dart';
 import 'package:mortalheart_mall/views/category/category_page.dart';
+import 'package:mortalheart_mall/views/home/SecondFloorPage.dart';
 import 'package:mortalheart_mall/views/home/home_page.dart';
 import 'package:mortalheart_mall/views/mine/mine_page.dart';
 import 'package:mortalheart_mall/views/not_found/not_found_page.dart';
@@ -50,6 +51,13 @@ abstract class AppPages {
         page: ()=> const StrollPage(),
         title:'逛',
         transition: Transition.fade,
+    ),
+    GetPage(
+        name: Routes.secondFloorRoute,
+        page: ()=> const SecondFloorPage(),
+        transition: Transition.fadeIn,
+        title: '活动'
+
     )
   ];
 

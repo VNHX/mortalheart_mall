@@ -9,6 +9,7 @@ import 'package:mortalheart_mall/views/home/widget/adv_img.dart';
 import 'package:mortalheart_mall/views/home/widget/gallery_list.dart';
 import 'package:mortalheart_mall/views/home/widget/menu_slider.dart';
 import 'package:mortalheart_mall/views/home/widget/tab_list.dart';
+import 'package:mortalheart_mall/widgets/loading_widget.dart';
 import 'package:mortalheart_mall/widgets/page_goods_list.dart';
 import 'dart:math' as math;
 import 'home_contoller.dart';
@@ -19,6 +20,7 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
   final controller = Get.put(HomeController());
     // TODO: implement build
+  if (controller.isLoading.value) return loadingWidget(context);
     return  Scaffold(
         body: NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification notification) {
@@ -28,13 +30,15 @@ class HomePage extends GetView<HomeController> {
           child: EasyRefresh.builder(
           controller:controller.freshController,
             // header: classicHeader,
+            clipBehavior: Clip.none,
             header: SecondaryBuilderHeader(
               header: classicHeader,
               secondaryTriggerOffset: 180,
               builder: ( context, state, header) {
-                final mode = state.mode;
-                print("这是下拉状态$mode");
-                final offset = state.offset;
+              final mode = state.mode;
+                print("这是下拉状态未打开：${mode}");
+                print("这是窗口是否打开：${!controller.pageFloor.value}");
+                final offset = !controller.pageFloor.value?state.offset:0.0;
                 final actualSecondaryTriggerOffset =
                 state.actualSecondaryTriggerOffset!;
                 final actualTriggerOffset = state.actualTriggerOffset;
@@ -46,15 +50,15 @@ class HomePage extends GetView<HomeController> {
                           (actualSecondaryTriggerOffset - actualTriggerOffset)
                   );
                 }
-                return SecondFloorWidget(
-                    scale,
-                    mode,
-                    header,
-                    state,
-                    hight: getScreenHeight(context),
-                    opacity:1 - scale,
-                    controller.freshController,
-                    controller,
+                return
+                    SecondFloorWidget(
+                      scale,
+                      mode,
+                      header,
+                      state,
+                      height: state.offset,
+                      controller.freshController,
+                      controller,
                 );
               },
             ),

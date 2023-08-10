@@ -174,6 +174,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.3.1"
+  flutter_group_list_view:
+    dependency: "direct main"
+    description:
+      name: flutter_group_list_view
+      sha256: "7504d513bbc46da0021b65003e253c0cbc1a221fc5973b6db00c9b92c167fd04"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -248,6 +256,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.1"
+  loading_indicator:
+    dependency: "direct main"
+    description:
+      name: loading_indicator
+      sha256: a101ffb2aa3e646137d7810bfa90b50525dd3f72c01235b6df7491cf6af6f284
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.1.1"
   matcher:
     dependency: transitive
     description:
