@@ -69,7 +69,7 @@ class _SecondFloorWidgetState extends State<SecondFloorWidget >  {
     print('跳转传$freshController');
     widget.controller.pageFloor.value = true;
     _timer.cancel();
-    await  Get.toNamed(Routes.secondFloorRoute);
+    Get.toNamed(Routes.secondFloorRoute);
   }
   void cloneOpen() async {
     ///取消计时器

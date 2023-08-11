@@ -11,13 +11,13 @@ class CartAdders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Get.put(CartController());
-    return Container(
+    return SizedBox(
         height: 500 + getStatusHeight(context),
         child: Container(
             padding: const EdgeInsets.all(15),
             child:Column(
               children: [
-                Container(
+                SizedBox(
                   width: getScreenWidth(context),
                   height: 40 + getStatusHeight(context),
                   child:  Row(

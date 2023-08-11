@@ -15,6 +15,8 @@ class CommonStyle {
   static ColorUtil unSelectedTabColor = ColorUtil.hex2Color("#433D33");
   static ColorUtil greyBgColor = ColorUtil.hex2Color("#F5F5F4");
   static ColorUtil selectedMeuColor = ColorUtil.hex2Color("#FF1520");
+  static ColorUtil greyBgColor2 = ColorUtil.hex2Color("#F1F1F2");
+
 
 
   static ColorUtil colorF3F3F3 = ColorUtil.hex2Color("#F3F3F3");

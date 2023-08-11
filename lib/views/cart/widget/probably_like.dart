@@ -15,5 +15,6 @@ Widget probablyLikeImage(BuildContext context, CartController cart) {
             getScreenWidth(context),
             50
         ),
-      ));
+      )
+  );
 }

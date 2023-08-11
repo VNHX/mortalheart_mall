@@ -1,7 +1,7 @@
 import 'package:mortalheart_mall/models/goods_page_info.dart';
 
 class CommonServiceApi {
-  static Future queryGoodsListByPage(String code, int currentPage, int pageSize) async {
+  static Future queryGoodsListByPage(String? code, int currentPage, int pageSize) async {
     var res =  {
       "goodsList" :[
         {

@@ -55,6 +55,19 @@ flutter:
      - images/check.png
      - images/clone.png
      - images/probably_like.png
+     - images/store.png
+     - images/arrow_right.png
+     - images/mine_top_bg.png
+     - images/ic_friend.png
+     - images/ic_setting.png
+     - images/ic_message.png
+     - images/goods_star.png
+     - images/store_focus.png
+     - images/look_history.png
+     - images/todo_pay.png
+     - images/todo_get.png
+     - images/todo_evaluate.png
+     - images/todo_exchange.png
   # example:
   # fonts:
   #   - family: Schyler

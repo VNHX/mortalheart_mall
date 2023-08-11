@@ -43,6 +43,9 @@ class CartPage extends GetView<CartController> {
                 cart.refreshFail(cart.refreshController);
               },
               onLoading: () async {
+                cart.loadMoreAction();
+                cart.loadMoreSuccess(cart.refreshController);
+                cart.loadMoreFail(cart.refreshController);
               },
               child: CustomScrollView(
                 controller: cart.scrollController,
@@ -61,3 +64,4 @@ class CartPage extends GetView<CartController> {
     );
   }
 }
+

@@ -4,7 +4,6 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mortalheart_mall/models/home/home_page_info.dart';
-import 'package:mortalheart_mall/views/home/service.dart';
 import 'dart:math' as math;
 class HomeController extends GetxController {
   /// 刷新
@@ -262,6 +261,10 @@ class HomeController extends GetxController {
   // 滚动距离
   Future<void> onScroll(ScrollNotification notification) async {
     double distance = notification.metrics.pixels;
+    print('我是二层楼：$pageFloor');
+    if(pageFloor.value){
+      freshController.closeHeaderSecondary();
+    }
     if (notification.depth == 0) {
       // pageScrollY =distance.obs as double;
     }

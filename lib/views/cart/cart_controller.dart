@@ -1,8 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mortalheart_mall/common/common_service.dart';
 import 'package:mortalheart_mall/common/constant/index.dart';
+import 'package:mortalheart_mall/models/cart_goods.dart';
 import 'package:mortalheart_mall/models/goods_page_adders.dart';
+import 'package:mortalheart_mall/models/goods_page_info.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class CartController extends GetxController {
@@ -16,6 +19,16 @@ class CartController extends GetxController {
   final isAdders = RxBool(false);
   // 地址数据
   final addersList = RxList([]);
+  //购物车商品数据
+  final cartGoods = RxList([]);
+  // 店铺选中
+  final selectCartGoodsparamList = RxList([]);
+  // 购物车选中的商品数据
+  final selectCartGoodsList =RxList([]);
+  // 商品数据
+  final goodsList = RxList([]);
+//商品数据
+  GoodsPageInfo goodsPageInfo = GoodsPageInfo.fromJson({});
   int currentPage = 1;
   final isAncive = RxInt(1);
   @override
@@ -23,7 +36,6 @@ class CartController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     intPage();
-    print('初始化2');
   }
   intPage() async{
     var list = {
@@ -33,36 +45,57 @@ class CartController extends GetxController {
         'phone': '13847929103',
         'mobile': '(010)51560123',
         'name': '段蔚漪'
-      }, {
-        'address': '古城小街五号院-特钢小区',
-        'detailed': '古城小街5号',
-        'phone': '15762283442',
-        'mobile': '',
-        'name': '解习舒'
-      }, {
-        'address': '白庙村-停车场',
-        'detailed': '北京市昌平区海白路北七家镇白庙村民委员会',
-        'phone': '15171166435',
-        'mobile': '',
-        'name': '范忆葵'
-      }, {
-        'address': '中央戏剧学院(昌平校区)',
-        'detailed': '北京市昌平区宏福中路4号',
-        'phone': '17041782453',
-        'mobile': '',
-        'name': '倪瑜蒙'
-      }, {
-        'address': '育新花园',
-        'detailed': '北京市海淀区育新花园西路与建材城西路东南角',
-        'phone': '15762283442',
-        'mobile': '',
-        'name': '卫言雅'
       }
       ]
     };
    final lists = GoogsPageAdders.fromJson(list ?? {});
-   print(lists.list);
     addersList.value = lists.list??[];
+    var goodsLists = {
+      "data": [
+        {
+          "storeName": "ASICS 旗舰店",
+          "storeCode": "s01",
+          "h5url": "https://shop.m.jd.com/shop/home?shopId=17529",
+          "goodsList": [
+            {
+              "code": "s01g01",
+              "imgUrl": "https://m.360buyimg.com/mobilecms/s714x714_jfs/t1/223778/18/6959/168828/622cc318E47c3b663/753cd44c08858430.jpg!q70.dpg.webp",
+              "description": "ASICS 亚瑟士 休闲鞋运动鞋舒适透气",
+              "price": "890.00",
+              "num": 1
+            },
+            {
+              "code": "s01g02",
+              "imgUrl": "https://m.360buyimg.com/mobilecms/s714x714_jfs/t1/106053/8/25901/375428/622cc43dE7be3f2c7/8de7c9f9f9691068.jpg",
+              "description": "ASICS 亚瑟士 男鞋运动鞋 GEL-VENTURE 7 MX 抓地缓冲越野跑鞋 黑色",
+              "price": "590.00",
+              "num": 1
+            }
+          ]
+        },
+        {
+          "storeName": "SALOMON 官方旗舰店",
+          "storeCode": "s02",
+          "h5url": "https://shop.m.jd.com/shop/home?shopId=133306",
+          "goodsList": [
+            {
+              "code": "s02g01",
+              "imgUrl": "https://m.360buyimg.com/mobilecms/s714x714_jfs/t1/174007/12/4609/59798/607947f3Ed185a0e8/339959c1bb02c110.jpg",
+              "description": "塞洛蒙（Salomon）男款 户外运动轻便舒适网布透气排水浅滩涉水溯溪鞋 AMPHIB BOLD",
+              "price": "798.00",
+              "num": 2
+            }
+          ]
+        }
+      ]
+    };
+
+    final goods = (goodsLists['data'])?.map((e) => CartGoods.fromJson(e)).toList() ?? [];
+    cartGoods.value = goods;
+    CommonServiceApi.queryGoodsListByPage('', currentPage, pageSize).then((value) {
+        List<GoodsList> goods = value.goodsList ?? [];
+        goodsList.value = goods;
+    });
   }
   isAddersOnTap(bool bool) {
     print(bool);
@@ -77,6 +110,67 @@ class CartController extends GetxController {
   void refreshFail(RefreshController refreshController) {
     refreshController.refreshFailed();
     refreshController.resetNoData();
+  }
+
+  void loadMoreAction() async{
+    loadMoreSuccess(refreshController);
+  }
+  void loadMoreSuccess(RefreshController refreshController) {
+    refreshController.refreshCompleted();
+  }
+  void loadMoreFail(RefreshController refreshController) {
+    refreshController.resetNoData();
+  }
+  /// 选中店铺
+  List selectStoreGoodsAction(param0, bool bool, int section) {
+    List selectList = selectCartGoodsList;
+    //找到相应店铺的商品信息
+    print('是否全选店铺：$param0');
+    CartGoods cGoods = cartGoods.firstWhere((element) => element.storeCode == param0);
+    cGoods.goodsList?.forEach((element) {
+      if (bool && !selectList.contains(element.code!)) {
+        selectList.add(element.code!);
+      } else if (!bool && selectList.contains(element.code!)) {
+        selectList.removeAt(selectList.indexOf(element.code!));
+      }
+    });
+      // cartGoods.map((element) {
+      //   if(element.storeCode== param0){
+      //     if(bool && !selectCartGoodsparamList.contains(element.storeCode)) {
+      //       selectCartGoodsparamList.add(element.storeCode);
+      //     }else if (!bool && selectCartGoodsparamList.contains(element.storeCode)){
+      //      selectCartGoodsparamList.removeAt(selectCartGoodsparamList.indexOf(element.storeCode!));
+      //     }
+      //   }
+      //
+      // }).toList();
+    print('这是选中的商铺：${selectList}');
+    return selectList;
+
+  }
+  /// 单独选中购物车中商品
+  List selectCartGoodsAction(param0) {
+    print(param0);
+    List selectList = selectCartGoodsList;
+    if (!selectList.contains(param0)) {
+      selectList.add(param0);
+    } else {
+      selectList.removeAt(selectList.indexOf(param0));
+    }
+    return selectList;
+  }
+  /// 购物车修改商品数量
+  RxList changeCartGoodsNumAction(param0, int value) {
+   cartGoods.map((element) {
+      List<GoodsInfo>? filterList = element.goodsList?.where((goods) => goods.code == param0).toList();
+      if (filterList!.isNotEmpty) {
+        int? index = element.goodsList?.indexWhere((goods) => goods.code == param0);
+        filterList[0].num = value;
+        element.goodsList?[index!] = filterList[0];
+      }
+      return element;
+    }).toList();
+    return cartGoods;
   }
 
 }
