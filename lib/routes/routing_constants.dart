@@ -9,4 +9,5 @@ abstract class Routes {
   static const mineRoute = '/mine';
   static const strollRoute = '/stroll';
   static const secondFloorRoute = '/secondFloor';
+  static const classificationRoute = '/classification';
 }

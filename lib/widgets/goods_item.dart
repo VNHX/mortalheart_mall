@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mortalheart_mall/common/util/color_util.dart';
+import 'package:mortalheart_mall/common/util/screen_util.dart';
 import 'package:mortalheart_mall/widgets/image/asset_image.dart';
 
 Widget goodsItem(BuildContext context,  item, double width) {
@@ -9,7 +10,7 @@ Widget goodsItem(BuildContext context,  item, double width) {
       onTap: () {},
       child: Container(
         padding: const EdgeInsets.only(bottom: 10),
-        margin: const EdgeInsets.only(left: 5, right: 5),
+        margin: const EdgeInsets.only(left: 3, right: 3),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
@@ -38,7 +39,7 @@ Widget goodsItem(BuildContext context,  item, double width) {
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 10,left: 10),
-                  padding: const EdgeInsets.only(left: 5, right: 6),
+                  padding: const EdgeInsets.only(left: 5, right: 5),
                   decoration: BoxDecoration(
                     color: ColorUtil.hex2Color('#ED4637'),
                     gradient: LinearGradient(colors: [ColorUtil.hex2Color("#E44746"), ColorUtil.hex2Color("#E3909B")]),

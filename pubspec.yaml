@@ -68,6 +68,7 @@ flutter:
      - images/todo_get.png
      - images/todo_evaluate.png
      - images/todo_exchange.png
+     - images/subsidy.png
   # example:
   # fonts:
   #   - family: Schyler

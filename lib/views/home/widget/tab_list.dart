@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mortalheart_mall/common/style/common_style.dart';
 import 'package:mortalheart_mall/common/util/screen_util.dart';
+import 'package:mortalheart_mall/routes/routing_constants.dart';
 import 'package:mortalheart_mall/views/home/home_contoller.dart';
 import 'package:mortalheart_mall/widgets/image/asset_image.dart';
 
@@ -64,34 +65,37 @@ Widget tabList(BuildContext context, HomeController controller) {
             //   width: 1,
             //   height: 20,
             // ),
-            Container(
-              height: 35.0,
-              alignment: Alignment.topCenter,
-              margin: const EdgeInsets.only(left: 6),
-              child:  Row(
-                children: [
-                SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: assetImage('images/classification.png', 20, 20),
-                ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 5),
-                    child: InkWell(
-                      onTap: ()=>{},
+            InkWell(
+                onTap: ()=>{
+                  Get.toNamed(Routes.classificationRoute)
+                },
+              child: Container(
+                height: 35.0,
+                alignment: Alignment.topCenter,
+                margin: const EdgeInsets.only(left: 6),
+                child:  Row(
+                  children: [
+                    SizedBox(
+                      width: 15,
+                      height: 15,
+                      child: assetImage('images/classification.png', 15, 15),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 5),
                       child: const Text(
-                        "分类",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
+                          "分类",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                ],
-              ),
+                  ],
+                ),
+              )
             )
+
           ],
             )
   );

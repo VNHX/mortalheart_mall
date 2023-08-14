@@ -19,16 +19,12 @@ Widget menuSlider(BuildContext context, HomeController controller) {
   return Container(
     color: CommonStyle.menuBjlor,
       height: 170,
-    padding: const EdgeInsets.only(bottom: 10),
-        child: Container(
-              padding: const EdgeInsets.only(left: 0,right: 8),
-              child:
-              Column(
-                children: [
-                  Expanded(flex: 1, child: menuPageList(context,controller)),
-                  Container(height: 15, alignment: Alignment.center, child:  indicator(context,controller))
-                ],
-              ),
+      padding: const EdgeInsets.only(bottom: 10),
+        child: Column(
+          children: [
+            Expanded(flex: 1, child: menuPageList(context,controller)),
+            Container(height: 15, alignment: Alignment.center, child:  indicator(context,controller))
+          ],
         ),
   );
 }

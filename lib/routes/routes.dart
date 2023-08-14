@@ -5,6 +5,7 @@ import 'package:mortalheart_mall/views/home/SecondFloorPage.dart';
 import 'package:mortalheart_mall/views/home/home_page.dart';
 import 'package:mortalheart_mall/views/mine/mine_page.dart';
 import 'package:mortalheart_mall/views/not_found/not_found_page.dart';
+import 'package:mortalheart_mall/views/other/classification_page.dart';
 import 'package:mortalheart_mall/views/splash/splash_page.dart';
 import 'package:mortalheart_mall/views/stroll/stroll_page.dart';
 
@@ -58,6 +59,11 @@ abstract class AppPages {
         transition: Transition.fadeIn,
         title: '活动'
 
+    ),
+    GetPage(
+      name: Routes.classificationRoute,
+      page: ()=>const ClassificationPage(),
+      title: '分类'
     )
   ];
 
