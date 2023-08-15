@@ -24,7 +24,8 @@ class TokenInterceptors extends InterceptorsWrapper {
     try {
       var responseJson = response.data;
       if (response.statusCode == 201 && responseJson["token"] != null) {
-        _token = 'token ' + responseJson["token"];
+        /// 拼接tooken
+        _token = responseJson["token"];
         // await LocalStorage.save(Config.TOKEN_KEY, _token);
       }
     } catch (e) {

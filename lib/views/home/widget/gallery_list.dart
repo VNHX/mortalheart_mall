@@ -26,7 +26,7 @@ Widget galleryList(BuildContext context, HomeController controller) {
       child:Carousel(
         options: CarouselOptions(
           height: 180,
-          viewportFraction: 1.0,
+          viewportFraction: 0,
           enlargeCenterPage: false,
           autoPlay: true,
           enableInfiniteScroll: true,

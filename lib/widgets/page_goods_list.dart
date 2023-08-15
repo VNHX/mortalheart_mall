@@ -11,8 +11,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class PageGoodsList extends StatefulWidget {
   final String code;
   final ScrollPhysics physics;
-
-  const PageGoodsList(this.code, this.physics, {super.key});
+  final PageController pageController;
+  const PageGoodsList(this.code, this.physics,  this.pageController, {super.key});
 
   @override
   State<StatefulWidget> createState() => _PageGoodsListState();
@@ -59,6 +59,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
   Widget build(BuildContext context) {
     double width = (getScreenWidth(context) - 20) / 2;
     var goodsList = goodsPageInfo.goodsList ?? [];
+    print('商品滚动${widget.pageController}');
 
     return Container(
       margin: const EdgeInsets.only(left: 8, right: 8),

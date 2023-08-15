@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mortalheart_mall/common/style/common_style.dart';
 import 'package:mortalheart_mall/common/util/easy_refresh_util.dart';
-import 'package:mortalheart_mall/common/util/screen_util.dart';
 import 'package:mortalheart_mall/views/home/widget/SecondFloorWidget.dart';
 import 'package:mortalheart_mall/views/home/widget/activity_slider.dart';
 import 'package:mortalheart_mall/views/home/widget/adv_img.dart';
@@ -33,37 +32,37 @@ class HomePage extends GetView<HomeController> {
           },
           child: EasyRefresh.builder(
           controller:controller.freshController,
-            // header: classicHeader,
+            header: classicHeader,
             clipBehavior: Clip.none,
-            header: SecondaryBuilderHeader(
-              header: classicHeader,
-              secondaryTriggerOffset: 180,
-              builder: ( context, state, header) {
-              final mode = state.mode;
-                final offset = !controller.pageFloor.value?state.offset:0.0;
-                final actualSecondaryTriggerOffset =
-                state.actualSecondaryTriggerOffset!;
-                final actualTriggerOffset = state.actualTriggerOffset;
-                double scale = 1;
-                if (offset > actualTriggerOffset) {
-                  scale = math.max(
-                      0.0,
-                      (actualSecondaryTriggerOffset - offset) /
-                          (actualSecondaryTriggerOffset - actualTriggerOffset)
-                  );
-                }
-                return
-                    SecondFloorWidget(
-                      scale,
-                      mode,
-                      header,
-                      state,
-                      height: state.offset,
-                      controller.freshController,
-                      controller,
-                );
-              },
-            ),
+            // header: SecondaryBuilderHeader(
+            //   header: classicHeader,
+            //   secondaryTriggerOffset: 180,
+            //   builder: ( context, state, header) {
+            //   final mode = state.mode;
+            //     final offset = !controller.pageFloor.value?state.offset:0.0;
+            //     final actualSecondaryTriggerOffset =
+            //     state.actualSecondaryTriggerOffset!;
+            //     final actualTriggerOffset = state.actualTriggerOffset;
+            //     double scale = 1;
+            //     if (offset > actualTriggerOffset) {
+            //       scale = math.max(
+            //           0.0,
+            //           (actualSecondaryTriggerOffset - offset) /
+            //               (actualSecondaryTriggerOffset - actualTriggerOffset)
+            //       );
+            //     }
+            //     return
+            //         SecondFloorWidget(
+            //           scale,
+            //           mode,
+            //           header,
+            //           state,
+            //           height: state.offset,
+            //           controller.freshController,
+            //           controller,
+            //     );
+            //   },
+            // ),
               onRefresh: () async =>  controller.easyRefreshSuccess(controller.freshController),
               childBuilder: (BuildContext context, ScrollPhysics physics) {
                 return NestedScrollView(
@@ -76,8 +75,8 @@ class HomePage extends GetView<HomeController> {
                       searchHeader(context,controller),
                       SliverList(
                         delegate: SliverChildListDelegate([
-                          tabList(context,controller), // tabs 导航
-                          galleryList(context,controller), // 轮播图
+                          tabList(context,controller), /// tabs 导航
+                          galleryList(context,controller), /// 轮播图
                           advBanner(context,controller), /// 广告图
                           menuSlider(context,controller), /// menu 菜单
                           subsidySlider(context,controller), /// 补贴
@@ -95,7 +94,7 @@ class HomePage extends GetView<HomeController> {
                       if (controller.isTabClick.value) return;
                       controller.currentTab.value = controller.tabs[index].code!;
                     },
-                    children: controller.tabs.map((e) => PageGoodsList(e.code!, physics,)).toList(),
+                    children: controller.tabs.map((e) => PageGoodsList(e.code!, physics,controller.pageController)).toList(),
                   ),
 
                 );

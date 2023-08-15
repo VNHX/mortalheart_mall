@@ -19,7 +19,7 @@ class Code {
   static const SUCCESS = 200;
 
   static errorHandleFunction(code, message, hideToast) {
-    // print("========code:${code}");
+    print("========code:${code}");
     if (hideToast) {
       return message;
     }

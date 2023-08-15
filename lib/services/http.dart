@@ -32,7 +32,7 @@ class HttpManager {
     option.headers!['connectTimeout'] = 30000;
     option.headers!['receiveTimeout'] = 30000;
 
-    exceptionHandler(DioError err) {
+    exceptionHandler(DioException err) {
       Response? errResponse;
       if (err.response != null) {
         errResponse = err.response;

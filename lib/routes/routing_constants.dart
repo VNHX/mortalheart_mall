@@ -10,4 +10,7 @@ abstract class Routes {
   static const strollRoute = '/stroll';
   static const secondFloorRoute = '/secondFloor';
   static const classificationRoute = '/classification';
+  static const detailRoute = '/detail';
+  static const webViewRoute = '/webView';
+  static const videoRoute = '/video';
 }

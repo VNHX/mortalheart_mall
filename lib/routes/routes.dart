@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:mortalheart_mall/views/cart/cart_page.dart';
 import 'package:mortalheart_mall/views/category/category_page.dart';
+import 'package:mortalheart_mall/views/detail/detail_page.dart';
+import 'package:mortalheart_mall/views/detail/video_page.dart';
 import 'package:mortalheart_mall/views/home/SecondFloorPage.dart';
 import 'package:mortalheart_mall/views/home/home_page.dart';
 import 'package:mortalheart_mall/views/mine/mine_page.dart';
@@ -8,6 +10,7 @@ import 'package:mortalheart_mall/views/not_found/not_found_page.dart';
 import 'package:mortalheart_mall/views/other/classification_page.dart';
 import 'package:mortalheart_mall/views/splash/splash_page.dart';
 import 'package:mortalheart_mall/views/stroll/stroll_page.dart';
+import 'package:mortalheart_mall/views/webView/webview_page.dart';
 
 import 'routing_constants.dart';
 
@@ -64,6 +67,21 @@ abstract class AppPages {
       name: Routes.classificationRoute,
       page: ()=>const ClassificationPage(),
       title: '分类'
+    ),
+    GetPage(
+      name: Routes.detailRoute,
+      page: ()=>const DetailPage(),
+      title: '详情'
+    ),
+    GetPage(
+      name: Routes.webViewRoute,
+      page: ()=> const WebViewPage(),
+      title: '外部链接'
+    ),
+    GetPage(
+      name: Routes.videoRoute,
+      page: ()=> const VideoPage(),
+      title: '视频'
     )
   ];
 

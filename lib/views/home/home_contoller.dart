@@ -261,7 +261,6 @@ class HomeController extends GetxController {
   // 滚动距离
   Future<void> onScroll(ScrollNotification notification) async {
     double distance = notification.metrics.pixels;
-    print('我是二层楼：$pageFloor');
     if(pageFloor.value){
       freshController.closeHeaderSecondary();
     }

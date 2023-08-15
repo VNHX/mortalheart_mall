@@ -23,6 +23,8 @@ dependencies:
   dio: ^5.3.2
   connectivity_plus: ^4.0.2
   loading_indicator: ^3.1.1
+  video_player: ^2.7.0
+  webview_flutter: ^4.2.2
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +71,9 @@ flutter:
      - images/todo_evaluate.png
      - images/todo_exchange.png
      - images/subsidy.png
+     - images/ic_share_black.png
+     - images/ic_back_black.png
+     - images/ic_ellipsis_black.png
   # example:
   # fonts:
   #   - family: Schyler
