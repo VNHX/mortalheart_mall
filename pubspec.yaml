@@ -74,6 +74,7 @@ flutter:
      - images/ic_share_black.png
      - images/ic_back_black.png
      - images/ic_ellipsis_black.png
+     - images/16pic_6048589_b.jpg
   # example:
   # fonts:
   #   - family: Schyler

@@ -1,8 +1,6 @@
 import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:mortalheart_mall/routes/routing_constants.dart';
+import 'package:mortalheart_mall/navigation/nav_page.dart';
 
 class SplashController extends GetxController{
 
@@ -14,7 +12,6 @@ class SplashController extends GetxController{
   init() async{
     await Future.delayed(const Duration(milliseconds:  2000));
     navigationPage();
-    print('跳转首页');
   }
   @override
   Future<void> onReady() async {
@@ -28,6 +25,6 @@ class SplashController extends GetxController{
   }
 
   void navigationPage() {
-    Get.offAllNamed(Routes.homeRoute);
+    // const NavPage();
   }
 }

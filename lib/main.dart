@@ -6,9 +6,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:mortalheart_mall/common/style/common_style.dart';
 import 'package:mortalheart_mall/common/util/screen_util.dart';
 import 'package:mortalheart_mall/routes/routes.dart';
+import 'package:mortalheart_mall/routes/routing_constants.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'navigation/nav_page.dart';
@@ -46,8 +46,6 @@ class MyApp extends StatelessWidget {
       child:  GetMaterialApp(
         title: '凡人之心',
         debugShowCheckedModeBanner: false,
-        //  默认加载
-        // initialRoute:Routes.splashRoute,
         // 404
         unknownRoute: AppPages.unknownRoute,
         // 加载路由

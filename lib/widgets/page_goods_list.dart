@@ -59,8 +59,6 @@ class _PageGoodsListState extends State<PageGoodsList> {
   Widget build(BuildContext context) {
     double width = (getScreenWidth(context) - 20) / 2;
     var goodsList = goodsPageInfo.goodsList ?? [];
-    print('商品滚动${widget.pageController}');
-
     return Container(
       margin: const EdgeInsets.only(left: 8, right: 8),
       color: CommonStyle.menuBjlor,
