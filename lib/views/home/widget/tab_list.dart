@@ -11,7 +11,7 @@ import 'package:mortalheart_mall/widgets/image/asset_image.dart';
 
 Widget tabList(BuildContext context, HomeController controller) {
   return Container(
-          height: 30,
+          height: 24,
           alignment: Alignment.topCenter,
           decoration:  BoxDecoration(
             gradient: LinearGradient(
@@ -70,7 +70,6 @@ Widget tabList(BuildContext context, HomeController controller) {
                   Get.toNamed(Routes.classificationRoute)
                 },
               child: Container(
-                height: 35.0,
                 alignment: Alignment.topCenter,
                 margin: const EdgeInsets.only(left: 6),
                 child:  Row(

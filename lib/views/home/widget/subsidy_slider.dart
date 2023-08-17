@@ -3,7 +3,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mortalheart_mall/common/style/common_style.dart';
 import 'package:mortalheart_mall/common/util/color_util.dart';
 import 'package:mortalheart_mall/common/util/screen_util.dart';
 import 'package:mortalheart_mall/models/goods_page_info.dart';
@@ -12,7 +11,7 @@ import 'package:mortalheart_mall/widgets/image/asset_image.dart';
 
 Widget subsidySlider(BuildContext context, HomeController controller){
   return  Container(
-      margin: const EdgeInsets.only(left: 8, right: 8,bottom: 8),
+      margin: const EdgeInsets.only(left: 5, right: 5,bottom: 5),
       child: Container(
         decoration: BoxDecoration(
             gradient: const LinearGradient(
@@ -41,7 +40,7 @@ Widget subsidy(BuildContext context) {
       Container(
         width: 50.0,
         height: 50.0,
-        margin: const EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 5),
+        margin: const EdgeInsets.only(left: 5,top: 5,bottom: 5),
         child:  CachedNetworkImage(
           imageUrl:'https://m15.360buyimg.com/mobilecms/jfs/t1/102632/18/20350/13255/61e131feE788947ef/c391b8590cdf427e.png!q70.jpg',
           placeholder: (context, url) =>
@@ -100,23 +99,24 @@ Widget subsidyPageList(BuildContext context) {
       children: List.generate(
         goods.length,
             (index) => Container(
-          width: 68,
-          margin: const EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 5),
+          width: 78,
+          margin: const EdgeInsets.only(left: 5,top: 5,bottom: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CachedNetworkImage(
                 imageUrl: goods[index].imgUrl!,
                 placeholder: (context, url) =>
-                    assetImage("images/default.png", 73.0, 86.0),
+                    assetImage("images/default.png", 78.0, 78.0),
                 errorWidget: (context, url, error) =>
-                    assetImage("images/default.png", 73.0, 86.0),
+                    assetImage("images/default.png", 78.0, 78.0),
                 fit: BoxFit.fill,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
+                    width: getScreenWidth(context),
                     decoration: BoxDecoration(
                       color: ColorUtil.hex2Color('#ED4637'),
                       gradient: LinearGradient(colors: [

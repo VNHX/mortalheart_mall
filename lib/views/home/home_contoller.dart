@@ -13,7 +13,9 @@ class HomeController extends GetxController {
   /// 页码
   final PageController pageController = PageController();
   /// 滚动条值
-  late double pageScrollY = 0.0 ;
+  final  pageScrollY = RxDouble(0);
+  final rollingTopAdvertisingShow = RxBool(false);
+  final rollingTopAdvertisingPage = RxDouble(0);
   /// 搜索栏广告条
   final List searchList =['跑步鞋','鸡胸肉','苹果13 手机壳'].obs;
   /// 加载
@@ -37,7 +39,8 @@ class HomeController extends GetxController {
    final menuSliderIndex = 0.obs;
    /// 广告条
   final adUrl = RxString('');
-
+  /// 背景图片 https://img-qn.51miz.com/preview/element/00/01/16/16/E-1161680-1DF4A9DA.jpg!/quality/90/unsharp/true/compress/true/format/jpg/fw/720
+  final headerBackgroundImage = RxString('');
 
   @override
   void onInit() {
@@ -265,7 +268,14 @@ class HomeController extends GetxController {
       freshController.closeHeaderSecondary();
     }
     if (notification.depth == 0) {
-      // pageScrollY =distance.obs as double;
+      pageScrollY.value = distance;
+      if(distance.truncate()>600){
+        rollingTopAdvertisingShow.value = true;
+        rollingTopAdvertisingPage.value = 55;
+      } else {
+        rollingTopAdvertisingShow.value = false;
+        rollingTopAdvertisingPage.value = 0;
+      }
     }
   }
   /// 首页tabs分类

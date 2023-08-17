@@ -72,15 +72,15 @@ Widget goodsItem(BuildContext context,  item, double width) {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(color: ColorUtil.hex2Color('#ED4637'), fontSize: 14)),
-                          // Container(
-                          //   margin: const EdgeInsets.only(top: 2),
-                          //   padding: const EdgeInsets.only(left: 2, right: 2),
-                          //   decoration: BoxDecoration(
-                          //     color: ColorUtil.hex2Color('#F4F4F5'),
-                          //     borderRadius: const BorderRadius.only(topLeft: Radius.circular(6), bottomLeft: Radius.circular(6)),
-                          //   ),
-                          //   child: Text("看相似", style: TextStyle(color: ColorUtil.hex2Color('#A4A5A4'), fontSize: 12)),
-                          // )
+                          Container(
+                            margin: const EdgeInsets.only(top: 2),
+                            padding: const EdgeInsets.only(left: 2, right: 2),
+                            decoration: BoxDecoration(
+                              color: ColorUtil.hex2Color('#F4F4F5'),
+                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(6), bottomLeft: Radius.circular(6)),
+                            ),
+                            child: Text("看相似", style: TextStyle(color: ColorUtil.hex2Color('#A4A5A4'), fontSize: 12)),
+                          )
                         ],
                       ))
                 ],
@@ -98,16 +98,16 @@ Widget goodsItem(BuildContext context,  item, double width) {
         ),
     child:Carousel(
           options: CarouselOptions(
-            height: 220,
+            height: 230,
             viewportFraction: 1.0,
             enlargeCenterPage: false,
             autoPlay: true,
             enableInfiniteScroll: true,
-            autoPlayInterval: const Duration(seconds: 8),
+            autoPlayInterval: const Duration(seconds: 5),
             slideIndicator: CircularWaveSlideIndicator(
                 itemSpacing: 13,
                 indicatorRadius: 4,
-                indicatorBorderWidth: 0,
+                indicatorBorderWidth: 12,
                 currentIndicatorColor: CommonStyle.themeColor,
                 indicatorBackgroundColor: Colors.grey
             ),

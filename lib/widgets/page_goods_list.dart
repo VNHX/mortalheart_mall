@@ -60,7 +60,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
     double width = (getScreenWidth(context) - 20) / 2;
     var goodsList = goodsPageInfo.goodsList ?? [];
     return Container(
-      margin: const EdgeInsets.only(left: 8, right: 8),
+      margin: const EdgeInsets.only(left: 5, right: 5),
       color: CommonStyle.menuBjlor,
       child: SmartRefresher(
           key: Key("MasonryGridView_${widget.code}"),
@@ -75,7 +75,7 @@ class _PageGoodsListState extends State<PageGoodsList> {
             padding: EdgeInsets.zero,
             itemCount: goodsList.length,
             crossAxisCount: 2,// 几列
-            mainAxisSpacing: 10,// 间距
+            mainAxisSpacing: 5,// 间距
             crossAxisSpacing: 0,
             itemBuilder: (context, index) => goodsItem(context, goodsList[index], width),
           )

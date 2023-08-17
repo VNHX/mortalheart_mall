@@ -2,12 +2,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mortalheart_mall/common/util/screen_util.dart';
 import 'package:mortalheart_mall/views/home/home_contoller.dart';
 import 'package:mortalheart_mall/widgets/image/asset_image.dart';
 
 Widget activitySlider(BuildContext context, HomeController controller){
   return Container(
-    margin: const EdgeInsets.only(left: 8, right: 8,bottom: 8),
+    margin: const EdgeInsets.only(left: 5, right: 5,bottom: 5),
     child: activity(context),
   );
 }
@@ -18,7 +19,7 @@ Widget activity(BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Container(
-        width: 185,
+        width: getScreenWidth(context) - 213,
         padding: const EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 5),
         decoration: BoxDecoration(
             gradient: const LinearGradient(
@@ -47,7 +48,7 @@ Widget activity(BuildContext context) {
         ),
       ),
       Container(
-        width: 185,
+        width: getScreenWidth(context) - 213,
         padding: const EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 5),
         decoration: BoxDecoration(
             gradient: const LinearGradient(
