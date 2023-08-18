@@ -18,7 +18,7 @@ Widget tabHeader(BuildContext context, DetailController detail, {required ValueC
           if (detail.index.value != index) {onChange(index)}
         },
         child: Opacity(
-            opacity: opacity,
+            opacity: 1,
             child: Container(
               height: 42,
               color: Colors.transparent,
@@ -38,7 +38,9 @@ Widget tabHeader(BuildContext context, DetailController detail, {required ValueC
                       color: detail.index.value == index ? CommonStyle.themeColor : Colors.transparent)
                 ],
               ),
-            )));
+            )
+        )
+    );
   }
 
   return Container(

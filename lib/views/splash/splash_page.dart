@@ -15,12 +15,14 @@ class SplashPage extends GetView<SplashController> {
   /// 如果默认倒计时结束跳转 首页
   @override
   Widget build(BuildContext context) {
-    Get.put(SplashController());
+   final splash =  Get.put(SplashController());
     return  Scaffold(
       body: Stack(
-          alignment: const Alignment(1.0, 1.0), // 右上角对齐
+          alignment: const Alignment(0.95,-0.8), // 右上角对齐
           children: [
-          ConstrainedBox(
+        InkWell(
+          onTap: ()=>splash.splashPageToName(),
+          child:   ConstrainedBox(
             constraints: const BoxConstraints.expand(),
             child:assetImage(
                 "images/16pic_6048589_b.jpg",
@@ -28,8 +30,26 @@ class SplashPage extends GetView<SplashController> {
                 getScreenHeight(context)
             ),
           ),
-             const SizedBox(
-              child: Text('跳转'),
+        ),
+              Container(
+              width: 60,
+              height: 30,
+              decoration:  BoxDecoration(
+                color: Colors.black54,
+                borderRadius: BorderRadius.circular(50)
+              ),
+              child: InkWell(
+                    onTap: ()=>splash.navigationPage(),
+                    child: Obx(() =>  Text(
+                      '跳过 ${splash.time.value!}',
+                      style: const TextStyle(
+                          color: Colors.white,
+                          height: 2
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+              ),
             )
         ]
       ),

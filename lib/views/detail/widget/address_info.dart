@@ -48,11 +48,11 @@ Widget rowItem(String label, String text, int line, bool showArrow, String? des)
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label, style: TextStyle(color: CommonStyle.color8B8C8A, fontSize: 18)),
+                Text(label, style: TextStyle(color: CommonStyle.color8B8C8A, )),
                 Container(
                     width: screenWidth - 110,
                     margin: const EdgeInsets.only(left: 10),
-                    child: Text(text, maxLines: line, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 18))),
+                    child: Text(text, maxLines: line, overflow: TextOverflow.ellipsis, )),
               ],
             ),
             // showArrow ? assetImage("images/detail/ic_arrow_right.png", 8, 24) : Container()
@@ -63,7 +63,7 @@ Widget rowItem(String label, String text, int line, bool showArrow, String? des)
           margin: const EdgeInsets.only(left: 10),
           child: Text(
             des,
-            style: const TextStyle(fontSize: 18),
+            // style: const TextStyle(fontSize: 18),
           ),
         )
             : Container()

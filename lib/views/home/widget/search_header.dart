@@ -16,8 +16,8 @@ Widget searchHeader(BuildContext context, HomeController controller) {
    return SliverPersistentHeader(
      pinned: true,
      delegate: SliverHeaderDelegate(
-       maxHeight: 88 + getStatusHeight(context),
-       minHeight: 88 + getStatusHeight(context),
+       maxHeight: 60 + getStatusHeight(context),
+       minHeight: 60 + getStatusHeight(context),
        child: _headerBackground(context,controller)
      ),
 
@@ -36,7 +36,7 @@ Widget search(BuildContext context, HomeController controller) {
           left: 0,
           child: CachedNetworkImage(
             width: getScreenWidth(context),
-            height:88 + getStatusHeight(context),
+            height:60 + getStatusHeight(context),
             fit: BoxFit.cover,
             imageUrl: controller.headerBackgroundImage.value ?? '',
             placeholder: (context, url) => assetImage("images/default.png", 25, 25),
@@ -44,7 +44,7 @@ Widget search(BuildContext context, HomeController controller) {
           ),
         ),
         Positioned(
-          top:35,
+          top:45,
           left: 18,
           child: CachedNetworkImage(
             width: 25,
@@ -56,7 +56,7 @@ Widget search(BuildContext context, HomeController controller) {
           ),
         ),
         Positioned(
-          top: 35,
+          top: 45,
           right: 18,
           child:  Row(
               children: <Widget>[

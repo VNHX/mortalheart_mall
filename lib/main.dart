@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mortalheart_mall/common/util/screen_util.dart';
 import 'package:mortalheart_mall/routes/routes.dart';
-import 'package:mortalheart_mall/routes/routing_constants.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'navigation/nav_page.dart';

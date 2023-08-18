@@ -99,7 +99,7 @@ Widget subsidyPageList(BuildContext context) {
       children: List.generate(
         goods.length,
             (index) => Container(
-          width: 78,
+          width: 75,
           margin: const EdgeInsets.only(left: 5,top: 5,bottom: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,9 +107,9 @@ Widget subsidyPageList(BuildContext context) {
               CachedNetworkImage(
                 imageUrl: goods[index].imgUrl!,
                 placeholder: (context, url) =>
-                    assetImage("images/default.png", 78.0, 78.0),
+                    assetImage("images/default.png", 75.0, 75.0),
                 errorWidget: (context, url, error) =>
-                    assetImage("images/default.png", 78.0, 78.0),
+                    assetImage("images/default.png", 75.0, 75.0),
                 fit: BoxFit.fill,
               ),
               Column(

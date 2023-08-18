@@ -26,7 +26,7 @@ Widget skuInfo(BuildContext context, Key key, DetailController detail) {
             children: [
               Text(
                 "${detail.bannerList.length}色可选",
-                style: TextStyle(color: CommonStyle.color545454, fontSize: 18),
+                style: TextStyle(color: CommonStyle.color545454),
               ),
               Expanded(
                   flex: 1,
@@ -52,8 +52,10 @@ Widget skuInfo(BuildContext context, Key key, DetailController detail) {
                                 errorWidget: (context, url, error) => assetImage("images/default.png", detail.thumbWidth.value, detail.thumbWidth.value),
                                 fit: BoxFit.fill,
                               ),
-                            ));
-                      }))
+                            )
+                        );
+                      })
+              )
             ],
           ),
         ),
@@ -64,7 +66,7 @@ Widget skuInfo(BuildContext context, Key key, DetailController detail) {
             textAlign: TextAlign.left,
             style: TextStyle(
               color: Colors.red,
-              fontSize: 28,
+              // fontSize: 28,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -75,7 +77,7 @@ Widget skuInfo(BuildContext context, Key key, DetailController detail) {
           textAlign: TextAlign.left,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 18,
+            // fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         )

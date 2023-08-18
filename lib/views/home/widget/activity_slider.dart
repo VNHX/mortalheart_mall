@@ -15,11 +15,10 @@ Widget activitySlider(BuildContext context, HomeController controller){
 
 Widget activity(BuildContext context) {
   return Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Container(
-        width: getScreenWidth(context) - 213,
+        width: getScreenWidth(context) - 204,
+        margin: const EdgeInsets.only(right: 2),
         padding: const EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 5),
         decoration: BoxDecoration(
             gradient: const LinearGradient(
@@ -48,7 +47,8 @@ Widget activity(BuildContext context) {
         ),
       ),
       Container(
-        width: getScreenWidth(context) - 213,
+        width: getScreenWidth(context) - 204,
+        margin: const EdgeInsets.only(left: 2),
         padding: const EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 5),
         decoration: BoxDecoration(
             gradient: const LinearGradient(
