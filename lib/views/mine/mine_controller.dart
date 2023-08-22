@@ -8,6 +8,7 @@ class MineController extends GetxController {
   final ScrollController scrollController = ScrollController();
   final PageController pageController = PageController();
   final isTabClick = RxBool(false);
+  final tabList = RxList([]);
   /// 滚动条值
   late double pageScrollY = 0.0 ;
   //

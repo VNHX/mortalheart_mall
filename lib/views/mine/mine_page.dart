@@ -6,6 +6,8 @@ import 'package:mortalheart_mall/common/util/easy_refresh_util.dart';
 import 'package:mortalheart_mall/views/mine/widget/info_header.dart';
 import 'package:mortalheart_mall/views/mine/widget/order_card.dart';
 import 'package:mortalheart_mall/views/mine/widget/single_line_menu.dart';
+import 'package:mortalheart_mall/views/mine/widget/tab_list.dart';
+import 'package:mortalheart_mall/widgets/page_goods_list.dart';
 
 import 'mine_controller.dart';
 
@@ -39,7 +41,7 @@ class MinePage extends GetView<MineController> {
                         singleLineMenu(context,mieController),
                       ]),
                     ),
-                    // tabList(context, onTabChange: (code) => handleTabChange(store, code, tabs))
+                    tabList(context,mieController)
                   ];
                 },
                 body: PageView(
@@ -47,7 +49,7 @@ class MinePage extends GetView<MineController> {
                   onPageChanged: (index) {
                     if (mieController.isTabClick.value) return;
                   },
-                  children: [],
+                  children:  mieController.tabList.value.map((e) => PageGoodsList(e.code!, physics,mieController.pageController)).toList(),
                 ),
               );
 

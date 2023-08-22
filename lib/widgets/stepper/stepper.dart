@@ -138,6 +138,8 @@ class _StepperState<VM extends num> extends State<Stepper<VM>> {
         borderRadius: borderRadius,
         highlightShape: BoxShape.rectangle,
         onTap: () {
+          print(widget._value);
+          print(widget._stepper);
           _buttonSetValue((widget._value + widget._stepper) as VM);
         },
         child: SizedBox(

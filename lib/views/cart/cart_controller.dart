@@ -169,7 +169,7 @@ class CartController extends GetxController {
         int? index = element.goodsList?.indexWhere((goods) => goods.code == param0);
         filterList[0].num = value;
         element.goodsList?[index!] = filterList[0];
-        print(filterList[0].num);
+        print( element.goodsList?[index!]);
       }
       return element;
     }).toList();
