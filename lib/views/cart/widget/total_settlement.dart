@@ -58,19 +58,14 @@ Widget totalSettlement(BuildContext context, CartController cart) {
                     height: 42,
                     btnName: "去结算(${cart.num.value})",
                     onTap: () {
-
+                      if (!cart.selectAllShow.value) {
+                        print("您还没有选择商品哦");
+                        return;
+                      }
                     }),
               )
           )
         ],
       ),
     );
-}
-
-
-class TotalInfo {
-  double price;
-  int num;
-
-  TotalInfo(this.price, this.num);
 }

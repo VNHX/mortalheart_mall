@@ -37,6 +37,7 @@ class CartController extends GetxController {
   final isAncive = RxInt(1);
 
   late  GoodsInfo?  parms = {}.obs as GoodsInfo?;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -104,7 +105,6 @@ class CartController extends GetxController {
     });
   }
   isAddersOnTap(bool bool) {
-    print(bool);
     isAdders.value = bool;
   }
 
@@ -148,7 +148,6 @@ class CartController extends GetxController {
   }
   /// 单独选中购物车中商品
   List selectCartGoodsAction(param0, cartGood, bool? va) {
-    print(selectCartGoodsparamList.contains(cartGood.storeCode));
     List selectList = selectCartGoodsList;
     if (!selectList.contains(param0)) {
       selectList.add(param0);
@@ -179,7 +178,6 @@ class CartController extends GetxController {
   }
   // 购物车全选
   void selectAll(bool bool, bool? va) {
-    print(bool);
     selectAllShow.value = va!;
       cartGoods.map((element) {
           if(bool && !selectCartGoodsparamList.contains(element.storeCode)) {
@@ -207,23 +205,20 @@ class CartController extends GetxController {
     double money = 0;
     int? nums = 0;
     for (var element in selectCartGoodsparamList) {
-      print(element);
       GoodsInfo? goodsInfo = getGoodsInfo(cartGoods, element);
       nums = goodsInfo!.num!;
-      money = goodsInfo.num! * double.parse(goodsInfo.price!);
-      totalPrice.value += money;
+      print('商品价格2：${goodsInfo.price }');
+      print('商品总价格：${totalPrice.value}');
       num.value += nums!;
     }
   }
 
   GoodsInfo?  getGoodsInfo(RxList cartGoods, String goodsCode) {
-    print(cartGoods);
-    print(goodsCode);
     CartGoods cGoods = cartGoods.firstWhere((element) => goodsCode.contains(element.storeCode!));
-    print(cGoods);
-    print(goodsCode);
      cGoods.goodsList?.forEach((item) {
-    parms =item;
+       print('商品价格1：${item.price}');
+       parms =item;
+       totalPrice.value += item.num! * double.parse(item.price!);
     });
      return parms;
   }
