@@ -59,7 +59,7 @@ class CartPage extends GetView<CartController> {
             ),
           ),
         ),
-        totalSettlement(context)
+        totalSettlement(context,cart)
       ],
     );
   }

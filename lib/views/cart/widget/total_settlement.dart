@@ -2,11 +2,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mortalheart_mall/common/style/common_style.dart';
 import 'package:mortalheart_mall/common/util/screen_util.dart';
+import 'package:mortalheart_mall/views/cart/cart_controller.dart';
 import 'package:mortalheart_mall/widgets/linear_button.dart';
 
-Widget totalSettlement(BuildContext context) {
+Widget totalSettlement(BuildContext context, CartController cart) {
   return Container(
       height: 58,
       width: getScreenWidth(context),
@@ -21,21 +23,24 @@ Widget totalSettlement(BuildContext context) {
               flex: 1,
               child: Row(
                 children: [
-                  Container(
-                    width: 28,
-                    margin: const EdgeInsets.only(left: 12),
-                    child: Checkbox(
-                        value: false,
-                        shape: const CircleBorder(),
-                        activeColor: Colors.red,
-                        onChanged: (bool? va) {
+                  Obx(() =>
+                      Container(
+                        width: 28,
+                        margin: const EdgeInsets.only(left: 12),
+                        child: Checkbox(
+                            value: cart.selectAllShow.value,
+                            shape: const CircleBorder(),
+                            activeColor: Colors.red,
+                            onChanged: (bool? va) {
+                              cart.selectAll(!cart.selectAllShow.value,va);
 
-                        }),
+                            }),
+                      )
                   ),
                   const Text("全选"),
                   Container(
                     margin: const EdgeInsets.only(left: 5),
-                    child: const Text("合计:"),
+                    child: const Text("合计："),
                   ),
                   Text("",
                       style: const TextStyle(fontWeight: FontWeight.bold))
@@ -48,7 +53,7 @@ Widget totalSettlement(BuildContext context) {
             child: LinearButton(
                 width: 130,
                 height: 42,
-                btnName: '去结算()',
+                btnName: '去结算',
                 onTap: () {
 
                 }),

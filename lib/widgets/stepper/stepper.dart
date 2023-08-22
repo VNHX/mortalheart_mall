@@ -97,6 +97,7 @@ class _StepperState<VM extends num> extends State<Stepper<VM>> {
   }
 
   VM? parseValue(String text) {
+    print('数字$text');
     if (text.isEmpty) return 0 as VM;
     double? value = double.tryParse(text);
     if (value == null) return null;

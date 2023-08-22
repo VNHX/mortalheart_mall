@@ -21,14 +21,16 @@ class CartController extends GetxController {
   final addersList = RxList([]);
   //购物车商品数据
   final cartGoods = RxList([]);
-  // 店铺选中
+  // 店铺全选
   final selectCartGoodsparamList = RxList([]);
-  // 购物车选中的商品数据
+  // 选中店铺----商品
   final selectCartGoodsList =RxList([]);
   // 商品数据
   final goodsList = RxList([]);
 //商品数据
   GoodsPageInfo goodsPageInfo = GoodsPageInfo.fromJson({});
+  /// 购物车全选
+  final selectAllShow = RxBool(false);
   int currentPage = 1;
   final isAncive = RxInt(1);
   @override
@@ -121,41 +123,38 @@ class CartController extends GetxController {
   void loadMoreFail(RefreshController refreshController) {
     refreshController.resetNoData();
   }
-  /// 选中店铺
-  List selectStoreGoodsAction(param0, bool bool, int section) {
-    List selectList = selectCartGoodsList;
-    //找到相应店铺的商品信息
-    print('是否全选店铺：$param0');
-    CartGoods cGoods = cartGoods.firstWhere((element) => element.storeCode == param0);
-    cGoods.goodsList?.forEach((element) {
-      if (bool && !selectList.contains(element.code!)) {
-        selectList.add(element.code!);
-      } else if (!bool && selectList.contains(element.code!)) {
-        selectList.removeAt(selectList.indexOf(element.code!));
+  /// 店铺全选
+  void selectAllStoreGoodsAction(param0, bool bool, int section){
+    cartGoods.map((element) {
+      if(element.storeCode== param0){
+        if(bool && !selectCartGoodsparamList.contains(element.storeCode)) {
+          selectCartGoodsparamList.add(element.storeCode);
+        }else if (!bool && selectCartGoodsparamList.contains(element.storeCode)){
+          selectCartGoodsparamList.removeAt(selectCartGoodsparamList.indexOf(element.storeCode!));
+        }
+        element.goodsList?.forEach((item) {
+          if (bool && !selectCartGoodsList.contains(item.code!)) {
+            selectCartGoodsList.add(item.code!);
+          } else if (!bool && selectCartGoodsList.contains(item.code!)){
+            selectCartGoodsList.removeAt(selectCartGoodsList.indexOf(item.code!));
+          }
+        });
       }
-    });
-      // cartGoods.map((element) {
-      //   if(element.storeCode== param0){
-      //     if(bool && !selectCartGoodsparamList.contains(element.storeCode)) {
-      //       selectCartGoodsparamList.add(element.storeCode);
-      //     }else if (!bool && selectCartGoodsparamList.contains(element.storeCode)){
-      //      selectCartGoodsparamList.removeAt(selectCartGoodsparamList.indexOf(element.storeCode!));
-      //     }
-      //   }
-      //
-      // }).toList();
-    print('这是选中的商铺：${selectList}');
-    return selectList;
-
+    }).toList();
   }
   /// 单独选中购物车中商品
-  List selectCartGoodsAction(param0) {
-    print(param0);
+  List selectCartGoodsAction(param0, cartGood, bool? va) {
+    print(selectCartGoodsparamList.contains(cartGood.storeCode));
     List selectList = selectCartGoodsList;
     if (!selectList.contains(param0)) {
       selectList.add(param0);
     } else {
       selectList.removeAt(selectList.indexOf(param0));
+    }
+    if(cartGood.goodsList.length==selectList.length){
+      selectCartGoodsparamList.add(cartGood.storeCode!);
+    }else if (selectCartGoodsparamList.contains(cartGood.storeCode)){
+      selectCartGoodsparamList.removeAt(selectCartGoodsparamList.indexOf(cartGood.storeCode!));
     }
     return selectList;
   }
@@ -167,10 +166,17 @@ class CartController extends GetxController {
         int? index = element.goodsList?.indexWhere((goods) => goods.code == param0);
         filterList[0].num = value;
         element.goodsList?[index!] = filterList[0];
+        print(filterList[0].num);
       }
       return element;
     }).toList();
+   print('商品数量$value');
     return cartGoods;
+  }
+  // 购物车全选
+  void selectAll(bool bool, bool? va) {
+    print(va);
+    print(bool);
   }
 
 }

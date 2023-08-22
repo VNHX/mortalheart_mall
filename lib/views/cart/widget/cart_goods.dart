@@ -39,8 +39,7 @@ Widget cartGoods(BuildContext context, CartController cart) {
                         shape: const CircleBorder(),
                         activeColor: Colors.red,
                         onChanged: (bool? va) {
-                          print(section);
-                          cart.selectStoreGoodsAction(cart.cartGoods[section].storeCode!,va!,section);
+                          cart.selectAllStoreGoodsAction(cart.cartGoods[section].storeCode!,va!,section);
                         }),
                   ),
                   GestureDetector(
@@ -69,7 +68,7 @@ Widget cartGoods(BuildContext context, CartController cart) {
         );
       },
       itemInSectionBuilder: (BuildContext context, IndexPath indexPath) {
-        return Obx(() =>
+        return
             Container(
               margin: const EdgeInsets.only(left: 12, right: 12),
               color: Colors.white,
@@ -77,7 +76,7 @@ Widget cartGoods(BuildContext context, CartController cart) {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
+                  Obx(() => Container(
                     width: 28,
                     margin: const EdgeInsets.only(left: 12),
                     child: Checkbox(
@@ -85,8 +84,9 @@ Widget cartGoods(BuildContext context, CartController cart) {
                         shape: const CircleBorder(),
                         activeColor: Colors.red,
                         onChanged: (bool? va) {
-                          cart.selectCartGoodsAction(cart.cartGoods[indexPath.section].goodsList![indexPath.index].code!);
+                          cart.selectCartGoodsAction(cart.cartGoods[indexPath.section].goodsList![indexPath.index].code!,cart.cartGoods[indexPath.section],va);
                         }),
+                  ),
                   ),
                   Container(
                     width: 92,
@@ -139,25 +139,27 @@ Widget cartGoods(BuildContext context, CartController cart) {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
+                                    Text(
                                         "￥${cart.cartGoods[indexPath.section].goodsList![indexPath.index].price!}",
                                         style: const TextStyle(fontSize: 20, color: Colors.red, fontWeight: FontWeight.w500),
                                       ),
-                                      StepperInt(
-                                        value: cart.cartGoods[indexPath.section].goodsList[indexPath.index].num,
-                                        size: 25,
-                                        style: StepperStyle(
-                                          foregroundColor: Colors.black87,
-                                          activeForegroundColor: Colors.black87,
-                                          activeBackgroundColor: Colors.white,
-                                          border: Border.all(color: Colors.grey),
-                                          elevation: 0,
-                                          buttonAspectRatio: 1.5,
-                                        ),
-                                        didChangeCount: (int value) {
-                                          cart.changeCartGoodsNumAction(cart.cartGoods[indexPath.section].goodsList![indexPath.index].code!, value);
-                                        },
-                                      )
+                                        Obx(() =>
+                                            StepperInt(
+                                              value: cart.cartGoods[indexPath.section].goodsList![indexPath.index].num,
+                                              size: 25,
+                                              style: StepperStyle(
+                                                foregroundColor: Colors.black87,
+                                                activeForegroundColor: Colors.black87,
+                                                activeBackgroundColor: Colors.white,
+                                                border: Border.all(color: Colors.grey),
+                                                elevation: 0,
+                                                buttonAspectRatio: 1.5,
+                                              ),
+                                              didChangeCount: (int value) {
+                                                cart.changeCartGoodsNumAction(cart.cartGoods[indexPath.section].goodsList![indexPath.index].code!, value);
+                                              },
+                                            )
+                                        )
                                     ],
                                   )
                               )
@@ -167,7 +169,6 @@ Widget cartGoods(BuildContext context, CartController cart) {
                   )
                 ],
               ),
-            )
         );
       },
       separatorBuilder: (IndexPath indexPath) {
