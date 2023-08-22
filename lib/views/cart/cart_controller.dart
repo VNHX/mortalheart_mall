@@ -32,7 +32,11 @@ class CartController extends GetxController {
   /// 购物车全选
   final selectAllShow = RxBool(false);
   int currentPage = 1;
+  final num = RxInt(0);
+  final totalPrice = RxDouble(0);
   final isAncive = RxInt(1);
+
+  late  GoodsInfo?  parms = {}.obs as GoodsInfo?;
   @override
   void onInit() {
     // TODO: implement onInit
@@ -175,8 +179,53 @@ class CartController extends GetxController {
   }
   // 购物车全选
   void selectAll(bool bool, bool? va) {
-    print(va);
     print(bool);
+    selectAllShow.value = va!;
+      cartGoods.map((element) {
+          if(bool && !selectCartGoodsparamList.contains(element.storeCode)) {
+            selectCartGoodsparamList.add(element.storeCode);
+          }else if (!bool && selectCartGoodsparamList.contains(element.storeCode)){
+            selectCartGoodsparamList.removeAt(selectCartGoodsparamList.indexOf(element.storeCode!));
+          }
+          element.goodsList?.forEach((item) {
+            if (bool && !selectCartGoodsList.contains(item.code!)) {
+              selectCartGoodsList.add(item.code!);
+            } else if (!bool && selectCartGoodsList.contains(item.code!)){
+              selectCartGoodsList.removeAt(selectCartGoodsList.indexOf(item.code!));
+            }
+          });
+      }).toList();
+   if(bool){
+     calcPrice(cartGoods,selectCartGoodsparamList);
+   }else{
+     totalPrice.value = 0;
+     num.value = 0;
+   }
+  }
+
+  void calcPrice(RxList cartGoods, RxList selectCartGoodsparamList,) {
+    double money = 0;
+    int? nums = 0;
+    for (var element in selectCartGoodsparamList) {
+      print(element);
+      GoodsInfo? goodsInfo = getGoodsInfo(cartGoods, element);
+      nums = goodsInfo!.num!;
+      money = goodsInfo.num! * double.parse(goodsInfo.price!);
+      totalPrice.value += money;
+      num.value += nums!;
+    }
+  }
+
+  GoodsInfo?  getGoodsInfo(RxList cartGoods, String goodsCode) {
+    print(cartGoods);
+    print(goodsCode);
+    CartGoods cGoods = cartGoods.firstWhere((element) => goodsCode.contains(element.storeCode!));
+    print(cGoods);
+    print(goodsCode);
+     cGoods.goodsList?.forEach((item) {
+    parms =item;
+    });
+     return parms;
   }
 
 }

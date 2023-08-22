@@ -42,21 +42,25 @@ Widget totalSettlement(BuildContext context, CartController cart) {
                     margin: const EdgeInsets.only(left: 5),
                     child: const Text("合计："),
                   ),
-                  Text("",
-                      style: const TextStyle(fontWeight: FontWeight.bold))
+                  Obx(() =>
+                      Text("${cart.totalPrice.value}",
+                          style: const TextStyle(fontWeight: FontWeight.bold))
+                  )
                 ],
               )),
-          Container(
-            width: 150,
-            height: 58,
-            alignment: Alignment.center,
-            child: LinearButton(
-                width: 130,
-                height: 42,
-                btnName: '去结算',
-                onTap: () {
+          Obx(() =>
+              Container(
+                width: 150,
+                height: 58,
+                alignment: Alignment.center,
+                child: LinearButton(
+                    width: 130,
+                    height: 42,
+                    btnName: "去结算(${cart.num.value})",
+                    onTap: () {
 
-                }),
+                    }),
+              )
           )
         ],
       ),
