@@ -52,7 +52,7 @@ class HomePage extends GetView<HomeController> {
                       advBanner(context,controller), /// 广告图
                       menuSlider(context,controller), /// menu 菜单
                       subsidySlider(context,controller), /// 补贴
-                      activitySlider(context,controller), /// 活动
+                      // activitySlider(context,controller), /// 活动
                     ]),
                   ),
                 ];

@@ -37,7 +37,7 @@ class CartAdders extends StatelessWidget {
                          onTap: ()=>{
                            Navigator.of(context).pop()
                          },
-                      child: assetImage('images/clone.png', 20, 20),
+                          child: assetImage('images/clone.png', 20, 20),
                        ),
                     ],
 

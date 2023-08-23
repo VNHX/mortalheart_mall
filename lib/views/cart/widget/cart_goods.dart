@@ -35,12 +35,13 @@ Widget cartGoods(BuildContext context, CartController cart) {
                     width: 28,
                     margin: const EdgeInsets.only(left: 12),
                     child: Checkbox(
-                        value: cart.selectCartGoodsparamList.contains(cart.cartGoods[section].storeCode),
+                        value: cart.selectCartGoodsList.length == cart.cartGoods[section].goodsList?.length,
                         shape: const CircleBorder(),
                         activeColor: Colors.red,
                         onChanged: (bool? va) {
                           cart.selectAllStoreGoodsAction(cart.cartGoods[section].storeCode!,va!,section);
-                        }),
+                        }
+                        ),
                   ),
                   GestureDetector(
                       onTap: () {
@@ -80,11 +81,11 @@ Widget cartGoods(BuildContext context, CartController cart) {
                     width: 28,
                     margin: const EdgeInsets.only(left: 12),
                     child: Checkbox(
-                        value: cart.selectCartGoodsList.value.contains(cart.cartGoods[indexPath.section].goodsList![indexPath.index].code!),
+                        value: cart.selectCartGoodsList.contains(cart.cartGoods[indexPath.section].goodsList![indexPath.index].code!),
                         shape: const CircleBorder(),
                         activeColor: Colors.red,
                         onChanged: (bool? va) {
-                          cart.selectCartGoodsAction(cart.cartGoods[indexPath.section].goodsList![indexPath.index].code!,cart.cartGoods[indexPath.section],va);
+                          cart.selectCartGoodsAction(cart.cartGoods[indexPath.section].goodsList![indexPath.index].code!,indexPath.section,indexPath.index);
                         }),
                   ),
                   ),

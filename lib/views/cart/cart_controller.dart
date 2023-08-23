@@ -129,37 +129,28 @@ class CartController extends GetxController {
   }
   /// 店铺全选
   void selectAllStoreGoodsAction(param0, bool bool, int section){
-    cartGoods.map((element) {
-      if(element.storeCode== param0){
-        if(bool && !selectCartGoodsparamList.contains(element.storeCode)) {
-          selectCartGoodsparamList.add(element.storeCode);
-        }else if (!bool && selectCartGoodsparamList.contains(element.storeCode)){
-          selectCartGoodsparamList.removeAt(selectCartGoodsparamList.indexOf(element.storeCode!));
-        }
-        element.goodsList?.forEach((item) {
-          if (bool && !selectCartGoodsList.contains(item.code!)) {
-            selectCartGoodsList.add(item.code!);
-          } else if (!bool && selectCartGoodsList.contains(item.code!)){
-            selectCartGoodsList.removeAt(selectCartGoodsList.indexOf(item.code!));
-          }
-        });
+    //找到相应店铺的商品信息
+    List selectList = selectCartGoodsList;
+    CartGoods cGoods = cartGoods.firstWhere((element) => element.storeCode == param0);
+    cGoods.goodsList?.forEach((element) {
+      if (bool && !selectList.contains(element.code!)) {
+        selectList.add(element.code!);
+      } else if (!bool && selectList.contains(element.code!)) {
+        selectList.removeAt(selectList.indexOf(element.code!));
       }
-    }).toList();
+    });
   }
   /// 单独选中购物车中商品
-  List selectCartGoodsAction(param0, cartGood, bool? va) {
+  void selectCartGoodsAction(param0, int section, int index) {
     List selectList = selectCartGoodsList;
     if (!selectList.contains(param0)) {
       selectList.add(param0);
     } else {
       selectList.removeAt(selectList.indexOf(param0));
     }
-    if(cartGood.goodsList.length==selectList.length){
-      selectCartGoodsparamList.add(cartGood.storeCode!);
-    }else if (selectCartGoodsparamList.contains(cartGood.storeCode)){
-      selectCartGoodsparamList.removeAt(selectCartGoodsparamList.indexOf(cartGood.storeCode!));
-    }
-    return selectList;
+    print(selectList);
+    print(cartGoods[section].goodsList![index]);
+    print(cartGoods[section].goodsList![index].code!);
   }
   /// 购物车修改商品数量
   RxList changeCartGoodsNumAction(param0, int value) {
@@ -179,26 +170,26 @@ class CartController extends GetxController {
   // 购物车全选
   void selectAll(bool bool, bool? va) {
     selectAllShow.value = va!;
-      cartGoods.map((element) {
-          if(bool && !selectCartGoodsparamList.contains(element.storeCode)) {
-            selectCartGoodsparamList.add(element.storeCode);
-          }else if (!bool && selectCartGoodsparamList.contains(element.storeCode)){
-            selectCartGoodsparamList.removeAt(selectCartGoodsparamList.indexOf(element.storeCode!));
-          }
-          element.goodsList?.forEach((item) {
-            if (bool && !selectCartGoodsList.contains(item.code!)) {
-              selectCartGoodsList.add(item.code!);
-            } else if (!bool && selectCartGoodsList.contains(item.code!)){
-              selectCartGoodsList.removeAt(selectCartGoodsList.indexOf(item.code!));
-            }
-          });
-      }).toList();
-   if(bool){
-     calcPrice(cartGoods,selectCartGoodsparamList);
-   }else{
-     totalPrice.value = 0;
-     num.value = 0;
-   }
+   //    cartGoods.map((element) {
+   //        if(bool && !selectCartGoodsparamList.contains(element.storeCode)) {
+   //          selectCartGoodsparamList.add(element.storeCode);
+   //        }else if (!bool && selectCartGoodsparamList.contains(element.storeCode)){
+   //          selectCartGoodsparamList.removeAt(selectCartGoodsparamList.indexOf(element.storeCode!));
+   //        }
+   //        element.goodsList?.forEach((item) {
+   //          if (bool && !selectCartGoodsList.contains(item.code!)) {
+   //            selectCartGoodsList.add(item.code!);
+   //          } else if (!bool && selectCartGoodsList.contains(item.code!)){
+   //            selectCartGoodsList.removeAt(selectCartGoodsList.indexOf(item.code!));
+   //          }
+   //        });
+   //    }).toList();
+   // if(bool){
+   //   calcPrice(cartGoods,selectCartGoodsparamList);
+   // }else{
+   //   totalPrice.value = 0;
+   //   num.value = 0;
+   // }
   }
 
   void calcPrice(RxList cartGoods, RxList selectCartGoodsparamList,) {

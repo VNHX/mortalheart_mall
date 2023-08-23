@@ -17,7 +17,7 @@ Widget activity(BuildContext context) {
   return Row(
     children: [
       Container(
-        width: getScreenWidth(context) - 204,
+        width: getScreenWidth(context) - 214,
         margin: const EdgeInsets.only(right: 2),
         padding: const EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 5),
         decoration: BoxDecoration(
@@ -47,7 +47,7 @@ Widget activity(BuildContext context) {
         ),
       ),
       Container(
-        width: getScreenWidth(context) - 204,
+        width: getScreenWidth(context) - 214,
         margin: const EdgeInsets.only(left: 2),
         padding: const EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 5),
         decoration: BoxDecoration(
