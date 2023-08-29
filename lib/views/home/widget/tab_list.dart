@@ -13,15 +13,15 @@ Widget tabList(BuildContext context, HomeController controller) {
   return Container(
           height: 24,
           alignment: Alignment.topCenter,
-          decoration:  BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                CommonStyle.gradientleftColor,
-                CommonStyle.gradientRightColor,
-                CommonStyle.gradientbottomColor,
-              ],
-            ),
-          ),
+          // decoration:  BoxDecoration(
+          //   gradient: LinearGradient(
+          //     colors: [
+          //       CommonStyle.gradientleftColor,
+          //       CommonStyle.gradientRightColor,
+          //       CommonStyle.gradientbottomColor,
+          //     ],
+          //   ),
+          // ),
           child:Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

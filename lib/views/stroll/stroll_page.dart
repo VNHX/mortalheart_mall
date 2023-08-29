@@ -12,20 +12,7 @@ class StrollPage extends GetView<StrollController> {
     Get.put(StrollController());
     return  Scaffold(
       backgroundColor: CommonStyle.splashColor,
-      body: Stack(
-          alignment: const Alignment(1.0, 1.0), // 右上角对齐
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints.expand(),
-              child:const Text(
-                  "图片"
-              ),
-            ),
-            const SizedBox(
-              child: Text('跳转'),
-            )
-          ]
-      ),
+      body:const Text('逛一逛')
     );
   }
 }

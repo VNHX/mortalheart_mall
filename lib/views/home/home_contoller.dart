@@ -53,6 +53,7 @@ class HomeController extends GetxController {
   void dispose() {
     super.dispose();
     freshController.dispose();
+    scrollController.dispose();
   }
   intPage() async {
     var data =  {
@@ -268,6 +269,7 @@ class HomeController extends GetxController {
       freshController.closeHeaderSecondary();
     }
     if (notification.depth == 0) {
+      print('下拉：${notification.depth}');
       pageScrollY.value = distance;
       if(distance.truncate()>600){
         rollingTopAdvertisingShow.value = true;
@@ -276,6 +278,8 @@ class HomeController extends GetxController {
         rollingTopAdvertisingShow.value = false;
         rollingTopAdvertisingPage.value = 0;
       }
+    }else if(notification.depth == 2){
+      print('上拉：${notification.depth}');
     }
   }
   /// 首页tabs分类

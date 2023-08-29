@@ -1,14 +1,15 @@
 
 import 'package:easy_refresh/easy_refresh.dart';
+import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mortalheart_mall/common/style/common_style.dart';
+import 'package:mortalheart_mall/common/util/SecondaryBuilderHeader.dart';
 import 'package:mortalheart_mall/common/util/easy_refresh_util.dart';
 import 'package:mortalheart_mall/views/home/widget/activity_slider.dart';
 import 'package:mortalheart_mall/views/home/widget/adv_img.dart';
 import 'package:mortalheart_mall/views/home/widget/gallery_list.dart';
 import 'package:mortalheart_mall/views/home/widget/menu_slider.dart';
-import 'package:mortalheart_mall/views/home/widget/rolling_top_advertising.dart';
 import 'package:mortalheart_mall/views/home/widget/subsidy_slider.dart';
 import 'package:mortalheart_mall/views/home/widget/tab_list.dart';
 import 'package:mortalheart_mall/widgets/loading_widget.dart';
@@ -24,6 +25,7 @@ class HomePage extends GetView<HomeController> {
     // TODO: implement build
     if (controller.isLoading.value) return loadingWidget(context);
     return  Scaffold(
+      backgroundColor:CommonStyle.menuBjlor,
       body: NotificationListener<ScrollNotification>(
         onNotification: (ScrollNotification notification) {
           controller.onScroll(notification);
@@ -31,12 +33,12 @@ class HomePage extends GetView<HomeController> {
         },
         child: EasyRefresh.builder(
           controller:controller.freshController,
-          header: classicHeader,
+          // header: classicHeader,
           clipBehavior: Clip.none,
-          // header: secondaryBuilderHeader(context,controller),
+          header: secondaryBuilderHeader(context,controller),
           onRefresh: () async =>  controller.easyRefreshSuccess(controller.freshController),
           childBuilder: (BuildContext context, ScrollPhysics physics) {
-            return NestedScrollView(
+            return ExtendedNestedScrollView(
               controller: controller.scrollController,
               physics:physics,
               // physics:const NeverScrollableScrollPhysics(),
@@ -44,7 +46,6 @@ class HomePage extends GetView<HomeController> {
                 return <Widget>[
                   const HeaderLocator.sliver(clearExtent: false),
                   searchHeader(context,controller),
-               // rollingTopAdvertising(context,controller),
                   SliverList(
                     delegate: SliverChildListDelegate([
                       tabList(context,controller), /// tabs 导航
@@ -57,6 +58,7 @@ class HomePage extends GetView<HomeController> {
                   ),
                 ];
               },
+              onlyOneScrollInBody: true,
               body:PageView(
                 controller: controller.pageController,
                 physics: const NeverScrollableScrollPhysics(), //禁止滑动

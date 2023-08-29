@@ -85,7 +85,7 @@ Widget cartGoods(BuildContext context, CartController cart) {
                         shape: const CircleBorder(),
                         activeColor: Colors.red,
                         onChanged: (bool? va) {
-                          cart.selectCartGoodsAction(cart.cartGoods[indexPath.section].goodsList![indexPath.index].code!,indexPath.section,indexPath.index);
+                          cart.selectCartGoodsAction(cart.cartGoods[indexPath.section].goodsList![indexPath.index].code!);
                         }),
                   ),
                   ),

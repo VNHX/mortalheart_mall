@@ -141,7 +141,7 @@ class CartController extends GetxController {
     });
   }
   /// 单独选中购物车中商品
-  void selectCartGoodsAction(param0, int section, int index) {
+  void selectCartGoodsAction(param0) {
     List selectList = selectCartGoodsList;
     if (!selectList.contains(param0)) {
       selectList.add(param0);
@@ -149,8 +149,6 @@ class CartController extends GetxController {
       selectList.removeAt(selectList.indexOf(param0));
     }
     print(selectList);
-    print(cartGoods[section].goodsList![index]);
-    print(cartGoods[section].goodsList![index].code!);
   }
   /// 购物车修改商品数量
   RxList changeCartGoodsNumAction(param0, int value) {

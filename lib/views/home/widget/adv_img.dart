@@ -13,7 +13,7 @@ Widget advBanner(BuildContext context, HomeController controller) {
                 color: CommonStyle.menuBjlor,
                 padding: const EdgeInsets.all(0),
                 child: CachedNetworkImage(
-                  height: 120,
+                  height: 90,
                   imageUrl: controller.adUrl.value ?? "",
                   placeholder: (context, url) => assetImage("images/default.png", getScreenWidth(context) - 24, 100),
                   errorWidget: (context, url, error) => assetImage("images/default.png", getScreenWidth(context) - 24, 100),

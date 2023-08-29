@@ -16,14 +16,14 @@ Widget searchHeader(BuildContext context, HomeController controller) {
    return SliverPersistentHeader(
      pinned: true,
      delegate: SliverHeaderDelegate(
-       maxHeight: 60 + getStatusHeight(context),
-       minHeight: 60 + getStatusHeight(context),
+       maxHeight: 88 + getStatusHeight(context),
+       minHeight: 88 + getStatusHeight(context),
        child: _headerBackground(context,controller)
      ),
 
    );
   }
-Widget search(BuildContext context, HomeController controller) {
+ search(BuildContext context, HomeController controller) {
   return  Stack(
       alignment: Alignment.center,
       fit: StackFit.expand,
@@ -36,7 +36,7 @@ Widget search(BuildContext context, HomeController controller) {
           left: 0,
           child: CachedNetworkImage(
             width: getScreenWidth(context),
-            height:60 + getStatusHeight(context),
+            height:90,
             fit: BoxFit.cover,
             imageUrl: controller.headerBackgroundImage.value ?? '',
             placeholder: (context, url) => assetImage("images/default.png", 25, 25),
@@ -44,7 +44,7 @@ Widget search(BuildContext context, HomeController controller) {
           ),
         ),
         Positioned(
-          top:45,
+          top:5,
           left: 18,
           child: CachedNetworkImage(
             width: 25,
@@ -56,18 +56,18 @@ Widget search(BuildContext context, HomeController controller) {
           ),
         ),
         Positioned(
-          top: 45,
+          top: 5,
           right: 18,
           child:  Row(
               children: <Widget>[
-                // Container(
-                //   margin: const EdgeInsets.only(right: 8),
-                //   child: const Text('消费'),
-                // ),
                 SizedBox(
                   width: 25,
                   height: 25,
                   child: assetImage('images/message.png', 25, 25),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 8),
+                  child: const Text('签到'),
                 ),
               ]
           ),
@@ -133,8 +133,10 @@ Widget search(BuildContext context, HomeController controller) {
   );
 }
 
-Widget _headerBackground(BuildContext context, HomeController controller) {
+ _headerBackground(BuildContext context, HomeController controller) {
+  final top = getStatusHeight(context);
   Widget container =  controller.headerBackgroundImage.value.isNotEmpty?Container(
+    // padding: EdgeInsets.only(top: getStatusHeight(context)),
         child: search(context,controller),
   ):Container(
     decoration:  BoxDecoration(
@@ -146,7 +148,7 @@ Widget _headerBackground(BuildContext context, HomeController controller) {
         ],
       ),
     ),
-    // padding: EdgeInsets.only(top: getStatusHeight(context)),
+    padding: EdgeInsets.only(top: top),
     child: search(context,controller),
   );
   return  container;
