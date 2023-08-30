@@ -33,9 +33,9 @@ class HomePage extends GetView<HomeController> {
         },
         child: EasyRefresh.builder(
           controller:controller.freshController,
-          // header: classicHeader,
+          header: classicHeader,
           clipBehavior: Clip.none,
-          header: secondaryBuilderHeader(context,controller),
+          // header: secondaryBuilderHeader(context,controller),
           onRefresh: () async =>  controller.easyRefreshSuccess(controller.freshController),
           childBuilder: (BuildContext context, ScrollPhysics physics) {
             return ExtendedNestedScrollView(
