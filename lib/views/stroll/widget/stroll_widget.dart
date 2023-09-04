@@ -12,7 +12,7 @@ import 'package:mortalheart_mall/views/stroll/stroll_controller.dart';
 import 'package:mortalheart_mall/widgets/image/asset_image.dart';
 
 Widget strollWidget (BuildContext context, StrollController stroll){
-  print('我是点击之后的值：${stroll.isSelected.value}');
+  print('我是点击之后的值：${getScreenHeight(context)}');
   late Widget strollConent;
   if(stroll.isSelected.value==0){
     strollConent =   Column(
@@ -21,7 +21,6 @@ Widget strollWidget (BuildContext context, StrollController stroll){
           width: getScreenWidth(context),
           height:95,
           color: Colors.white,
-          margin: const EdgeInsets.only(bottom: 15),
           child: ListView.builder(
                 itemCount: 10,
                 scrollDirection: Axis.horizontal,
@@ -73,15 +72,27 @@ Widget strollWidget (BuildContext context, StrollController stroll){
           )
           // child: ,
         ),
-       Container(
+        SizedBox(
           width: getScreenWidth(context),
-          height: 485,
-          margin: const EdgeInsets.only(left: 15,right: 15),
-          decoration: const BoxDecoration(
-            borderRadius:BorderRadius.all(Radius.circular(15)),
-            color: Colors.white,
+          // padding: const EdgeInsets.only(top: 10,bottom: 10),
+          height: 512,
+          child: ListView.builder(
+              itemCount: 100,
+              padding:  const EdgeInsets.all(0),
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  width: getScreenWidth(context),
+                  height: getScreenHeight(context)- 280,
+                  margin: const EdgeInsets.only(left: 15,right: 15,bottom: 15),
+                  decoration: const BoxDecoration(
+                    borderRadius:BorderRadius.all(Radius.circular(15)),
+                    color: Colors.white,
+                  ),
+                  child:  Text('内容区域$index'),
+                );
+                // return Text('内容区域$index');
+              }
           ),
-          child: const Text('内容区域'),
         ),
       ],
     );
