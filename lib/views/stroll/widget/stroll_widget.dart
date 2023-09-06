@@ -21,6 +21,7 @@ Widget strollWidget (BuildContext context, StrollController stroll){
           width: getScreenWidth(context),
           height:95,
           color: Colors.white,
+          margin: EdgeInsets.only(bottom: 5),
           child: ListView.builder(
                 itemCount: 10,
                 scrollDirection: Axis.horizontal,
@@ -75,9 +76,9 @@ Widget strollWidget (BuildContext context, StrollController stroll){
         SizedBox(
           width: getScreenWidth(context),
           // padding: const EdgeInsets.only(top: 10,bottom: 10),
-          height: 512,
+          height: 507,
           child: ListView.builder(
-              itemCount: 100,
+              itemCount: 5,
               padding:  const EdgeInsets.all(0),
               itemBuilder: (BuildContext context, int index) {
                 return Container(
